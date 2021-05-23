@@ -1,5 +1,6 @@
 import { getCustomRepository } from "typeorm";
 
+import AppError from "../errors/AppErrors";
 import Cidade from "../models/Cidade";
 import CidadesRepository from "../repositories/CidadesRepository";
 
@@ -14,7 +15,7 @@ class CreateCidadeService {
     const cidadeJaRegistrada = await cidadesRepository.findByCodigo(codigo);
 
     if (cidadeJaRegistrada) {
-      throw Error("Cidade já registrada");
+      throw new AppError("Cidade já registrada");
     }
 
     const cidade = cidadesRepository.create({

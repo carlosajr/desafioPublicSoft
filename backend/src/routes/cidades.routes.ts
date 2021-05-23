@@ -16,20 +16,16 @@ cidadesRoutes.get("/", async (request, response) => {
 });
 
 cidadesRoutes.post("/", async (request, response) => {
-  try {
-    const { codigo, nome } = request.body;
+  const { codigo, nome } = request.body;
 
-    const createCidade = new CreateCidadeService();
+  const createCidade = new CreateCidadeService();
 
-    const cidade = await createCidade.execute({
-      codigo,
-      nome,
-    });
+  const cidade = await createCidade.execute({
+    codigo,
+    nome,
+  });
 
-    return response.status(201).json(cidade);
-  } catch (err) {
-    return response.status(400).json({ error: err.message });
-  }
+  return response.status(201).json(cidade);
 });
 
 export default cidadesRoutes;

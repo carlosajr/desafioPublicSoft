@@ -3,6 +3,7 @@ import { sign } from "jsonwebtoken";
 import { getRepository } from "typeorm";
 
 import authConfig from "../config/auth";
+import AppError from "../errors/AppErrors";
 import Usuario from "../models/Usuario";
 
 interface IRequestDTO {
@@ -24,13 +25,13 @@ class AuthenticateUserService {
     });
 
     if (!usuario) {
-      throw new Error("Email ou senha invalidos");
+      throw new AppError("Email ou senha invalidos", 401);
     }
 
     const senhaCorreta = await compare(senha, usuario.senha);
 
     if (!senhaCorreta) {
-      throw new Error("Email ou senha invalidos");
+      throw new AppError("Email ou senha invalidos", 401);
     }
 
     const { secret, expiresIn } = authConfig.jwt;

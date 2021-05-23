@@ -1,6 +1,7 @@
 import { hash } from "bcryptjs";
 import { getRepository } from "typeorm";
 
+import AppError from "../errors/AppErrors";
 import Usuario from "../models/Usuario";
 
 interface IRequestDTO {
@@ -18,7 +19,7 @@ class CreateCidadeService {
     });
 
     if (usuarioJaExiste) {
-      throw new Error("Endereço de email já utilizado");
+      throw new AppError("Endereço de email já utilizado");
     }
 
     const hashedSenha = await hash(senha, 6);
