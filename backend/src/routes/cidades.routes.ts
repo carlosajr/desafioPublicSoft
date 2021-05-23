@@ -1,10 +1,13 @@
 import { Router } from "express";
 import { getCustomRepository } from "typeorm";
 
+import ensureAuthenticated from "../middlewares/ensureAuthenticated";
 import CidadesRepository from "../repositories/CidadesRepository";
 import CreateCidadeService from "../services/CreateCidadeService";
 
 const cidadesRoutes = Router();
+
+cidadesRoutes.use(ensureAuthenticated);
 
 cidadesRoutes.get("/", async (request, response) => {
   const cidadesRepository = getCustomRepository(CidadesRepository);
