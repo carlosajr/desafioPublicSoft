@@ -1,9 +1,9 @@
+import cidadesRoutes from "@modules/cidades/infra/http/routes/cidades.routes";
+import sessionsRoutes from "@modules/usuarios/infra/http/routes/sessions.routes";
+import usuariosRoutes from "@modules/usuarios/infra/http/routes/usuarios.routes";
 import { Router } from "express";
 
-import cidadesRoutes from "./cidades.routes";
 import infoRoutes from "./info.routes";
-import sessionsRoutes from "./sessions.routes";
-import usuariosRoutes from "./usuarios.routes";
 
 const routes = Router();
 

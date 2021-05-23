@@ -1,13 +1,13 @@
+import CreateUsuarioService from "@modules/usuarios/services/CreateUsuarioService";
 import { Router } from "express";
-
-import CreateUsuarioService from "../services/CreateUsuarioService";
+import { container } from "tsyringe";
 
 const usuariosRoutes = Router();
 
 usuariosRoutes.post("/", async (request, response) => {
   const { nome, email, senha } = request.body;
 
-  const createUsuario = new CreateUsuarioService();
+  const createUsuario = container.resolve(CreateUsuarioService);
 
   const usuario = await createUsuario.execute({
     nome,
