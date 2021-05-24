@@ -30,6 +30,9 @@ class Contrato {
   @Column()
   data_fim: Date;
 
+  @Column()
+  ativo: boolean;
+
   @CreateDateColumn()
   created_at: Date;
 

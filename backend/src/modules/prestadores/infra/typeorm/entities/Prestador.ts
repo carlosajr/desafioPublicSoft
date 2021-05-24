@@ -56,6 +56,9 @@ class Prestador {
   @JoinColumn({ name: "estado_id" })
   estado: Estado;
 
+  @Column()
+  ativo: boolean;
+
   @CreateDateColumn()
   created_at: Date;
 

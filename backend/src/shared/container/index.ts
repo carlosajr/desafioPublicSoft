@@ -2,6 +2,8 @@ import CidadesRepository from "@modules/cidades/infra/typeorm/repositories/Cidad
 import ICidadeRepository from "@modules/cidades/repositories/ICidadesRepository";
 import EstadosRepository from "@modules/estados/infra/typeorm/repositories/EstadosRepository";
 import IEstadoRepository from "@modules/estados/repositories/IEstadosRepository";
+import PrestadoresRepository from "@modules/prestadores/infra/typeorm/repositories/PrestadoresRepository";
+import IPrestadoresRepository from "@modules/prestadores/repositories/IPrestadoresRepository";
 import UsuariosRepository from "@modules/usuarios/infra/typeorm/repositories/UsuarioRepository";
 import IUsuarioRepository from "@modules/usuarios/repositories/IUsuarioRepository";
 import { container } from "tsyringe";
@@ -21,4 +23,9 @@ container.registerSingleton<IEstadoRepository>(
 container.registerSingleton<IUsuarioRepository>(
   "UsuariosRepository",
   UsuariosRepository
+);
+
+container.registerSingleton<IPrestadoresRepository>(
+  "PrestadoresRepository",
+  PrestadoresRepository
 );
