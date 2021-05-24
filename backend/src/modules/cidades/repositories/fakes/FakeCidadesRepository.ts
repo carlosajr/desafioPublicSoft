@@ -18,6 +18,17 @@ class CidadesRepository implements ICidadeRepository {
     return cidadeComCodigo;
   }
 
+  public async findByCodigoEstado(codigo_estado: number): Promise<Cidade[]> {
+    const cidadeComCodigoEstado: Cidade[] = [];
+
+    this.cidades.forEach(function (cidade) {
+      if (cidade.codigo_estado === codigo_estado)
+        cidadeComCodigoEstado.push(cidade);
+    });
+
+    return cidadeComCodigoEstado;
+  }
+
   public async create({ codigo, nome }: ICreateCidadeDTO): Promise<Cidade> {
     const cidade = new Cidade();
 

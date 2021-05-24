@@ -5,4 +5,5 @@ export default interface ICidadeRepository {
   create(data: ICreateCidadeDTO): Promise<Cidade>;
   findAll(): Promise<Cidade[]>;
   findByCodigo(codigo: number): Promise<Cidade | undefined>;
+  findByCodigoEstado(codigo_estado: number): Promise<Cidade[]>;
 }

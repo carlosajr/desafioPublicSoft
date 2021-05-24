@@ -1,18 +1,18 @@
 import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity("cidades")
-class Cidade {
+@Entity("estados")
+class Estado {
   @PrimaryGeneratedColumn("uuid")
   id: string;
-
-  @Column()
-  codigo_estado: number;
 
   @Column()
   codigo: number;
 
   @Column()
+  sigla: string;
+
+  @Column()
   nome: string;
 }
 
-export default Cidade;
+export default Estado;
