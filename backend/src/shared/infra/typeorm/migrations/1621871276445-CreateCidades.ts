@@ -36,7 +36,6 @@ export class CreateCidades1621708505685 implements MigrationInterface {
 
     await queryRunner.createForeignKey(
       "cidades",
-
       new TableForeignKey({
         name: "EstadoCidade",
         columnNames: ["codigo_estado"],
