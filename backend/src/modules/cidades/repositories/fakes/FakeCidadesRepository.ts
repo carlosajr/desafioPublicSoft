@@ -6,6 +6,10 @@ import { v4 as uuid } from "uuid";
 class CidadesRepository implements ICidadeRepository {
   private cidades: Cidade[] = [];
 
+  public async findAll(): Promise<Cidade[]> {
+    return this.cidades;
+  }
+
   public async findByCodigo(codigo: number): Promise<Cidade | undefined> {
     const cidadeComCodigo = this.cidades.find(
       (cidade) => cidade.codigo === codigo

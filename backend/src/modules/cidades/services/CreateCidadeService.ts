@@ -14,7 +14,9 @@ class CreateCidadeService {
   constructor(
     @inject("CidadesRepository")
     private cidadesRepository: ICidadeRepository
-  ) { }
+  ) {
+    //
+  }
 
   public async execute({ codigo, nome }: IRequestDTO): Promise<Cidade> {
     const cidadeJaRegistrada = await this.cidadesRepository.findByCodigo(

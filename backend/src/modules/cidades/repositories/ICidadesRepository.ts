@@ -3,5 +3,6 @@ import Cidade from "@modules/cidades/infra/typeorm/entities/Cidade";
 
 export default interface ICidadeRepository {
   create(data: ICreateCidadeDTO): Promise<Cidade>;
+  findAll(): Promise<Cidade[]>;
   findByCodigo(codigo: number): Promise<Cidade | undefined>;
 }

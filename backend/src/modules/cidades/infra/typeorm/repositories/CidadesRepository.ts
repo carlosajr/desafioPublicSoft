@@ -10,6 +10,11 @@ class CidadesRepository implements ICidadeRepository {
     this.ormRepository = getRepository(Cidade);
   }
 
+  public async findAll(): Promise<Cidade[]> {
+    const cidades = await this.ormRepository.find();
+    return cidades;
+  }
+
   public async findByCodigo(codigo: number): Promise<Cidade | undefined> {
     const findCidade = await this.ormRepository.findOne({
       where: { codigo },
