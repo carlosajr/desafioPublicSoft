@@ -1,7 +1,7 @@
 import authConfig from "@config/auth";
 import Usuario from "@modules/usuarios/infra/typeorm/entities/Usuario";
+import IHashProvider from "@modules/usuarios/providers/models/IHashProvider";
 import IUsuarioRepository from "@modules/usuarios/repositories/IUsuarioRepository";
-import { compare } from "bcryptjs";
 import { sign } from "jsonwebtoken";
 import { inject, injectable } from "tsyringe";
 
@@ -21,8 +21,13 @@ interface IResponseDTO {
 class AuthenticateUsuarioService {
   constructor(
     @inject("UsuariosRepository")
-    private usuariosRepository: IUsuarioRepository
-  ) { }
+    private usuariosRepository: IUsuarioRepository,
+
+    @inject("HashProvider")
+    private hashProvider: IHashProvider
+  ) {
+    //
+  }
 
   public async execute({ email, senha }: IRequestDTO): Promise<IResponseDTO> {
     const usuario = await this.usuariosRepository.findByEmail(email);
@@ -31,7 +36,10 @@ class AuthenticateUsuarioService {
       throw new AppError("Email ou senha invalidos", 401);
     }
 
-    const senhaCorreta = await compare(senha, usuario.senha);
+    const senhaCorreta = await this.hashProvider.comapreHash(
+      senha,
+      usuario.senha
+    );
 
     if (!senhaCorreta) {
       throw new AppError("Email ou senha invalidos", 401);

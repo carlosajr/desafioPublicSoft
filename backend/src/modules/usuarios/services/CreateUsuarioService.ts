@@ -1,6 +1,6 @@
 import Usuario from "@modules/usuarios/infra/typeorm/entities/Usuario";
+import IHashProvider from "@modules/usuarios/providers/models/IHashProvider";
 import IUsuarioRepository from "@modules/usuarios/repositories/IUsuarioRepository";
-import { hash } from "bcryptjs";
 import { inject, injectable } from "tsyringe";
 
 import AppError from "@shared/errors/AppErrors";
@@ -15,8 +15,13 @@ interface IRequestDTO {
 class CreateCidadeService {
   constructor(
     @inject("UsuariosRepository")
-    private usuariosRepository: IUsuarioRepository
-  ) { }
+    private usuariosRepository: IUsuarioRepository,
+
+    @inject("HashProvider")
+    private hashProvider: IHashProvider
+  ) {
+    //
+  }
 
   public async execute({ nome, email, senha }: IRequestDTO): Promise<Usuario> {
     const usuarioJaExiste = await this.usuariosRepository.findByEmail(email);
@@ -25,7 +30,7 @@ class CreateCidadeService {
       throw new AppError("Endereço de email já utilizado");
     }
 
-    const hashedSenha = await hash(senha, 6);
+    const hashedSenha = await this.hashProvider.generateHash(senha);
 
     const usuario = await this.usuariosRepository.create({
       nome,

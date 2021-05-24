@@ -4,6 +4,8 @@ import UsuariosRepository from "@modules/usuarios/infra/typeorm/repositories/Usu
 import IUsuarioRepository from "@modules/usuarios/repositories/IUsuarioRepository";
 import { container } from "tsyringe";
 
+import "@modules/usuarios/providers/container";
+
 container.registerSingleton<ICidadeRepository>(
   "CidadesRepository",
   CidadesRepository
