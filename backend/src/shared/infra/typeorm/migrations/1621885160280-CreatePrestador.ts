@@ -25,6 +25,7 @@ export class CreatePrestador1621885160280 implements MigrationInterface {
           {
             name: "cpf_cnpj",
             type: "varchar",
+            isUnique: true,
           },
           {
             name: "nome",
@@ -33,6 +34,7 @@ export class CreatePrestador1621885160280 implements MigrationInterface {
           {
             name: "email",
             type: "varchar",
+            isUnique: true,
           },
           {
             name: "cep",

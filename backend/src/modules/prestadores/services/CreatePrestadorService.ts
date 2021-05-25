@@ -6,7 +6,7 @@ import { inject, injectable } from "tsyringe";
 import AppError from "@shared/errors/AppErrors";
 
 @injectable()
-class CreateCidadeService {
+class CreatePrestadorService {
   constructor(
     @inject("PrestadoresRepository")
     private prestadoresRepository: IPrestadoresRepository
@@ -37,4 +37,4 @@ class CreateCidadeService {
   }
 }
 
-export default CreateCidadeService;
+export default CreatePrestadorService;

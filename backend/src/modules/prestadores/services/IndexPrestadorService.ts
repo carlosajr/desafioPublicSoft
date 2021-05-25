@@ -3,7 +3,7 @@ import IPrestadoresRepository from "@modules/prestadores/repositories/IPrestador
 import { inject, injectable } from "tsyringe";
 
 @injectable()
-class CreateCidadeService {
+class IndexPrestadorService {
   constructor(
     @inject("PrestadoresRepository")
     private prestadoresRepository: IPrestadoresRepository
@@ -18,4 +18,4 @@ class CreateCidadeService {
   }
 }
 
-export default CreateCidadeService;
+export default IndexPrestadorService;

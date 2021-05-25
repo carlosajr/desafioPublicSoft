@@ -1,5 +1,7 @@
 import CidadesRepository from "@modules/cidades/infra/typeorm/repositories/CidadesRepository";
 import ICidadeRepository from "@modules/cidades/repositories/ICidadesRepository";
+import ContratosRepository from "@modules/contratos/infra/typeorm/repositories/ContratosRepository";
+import IContratosRepository from "@modules/contratos/repositories/IContratosRepository";
 import EstadosRepository from "@modules/estados/infra/typeorm/repositories/EstadosRepository";
 import IEstadoRepository from "@modules/estados/repositories/IEstadosRepository";
 import PrestadoresRepository from "@modules/prestadores/infra/typeorm/repositories/PrestadoresRepository";
@@ -28,4 +30,9 @@ container.registerSingleton<IUsuarioRepository>(
 container.registerSingleton<IPrestadoresRepository>(
   "PrestadoresRepository",
   PrestadoresRepository
+);
+
+container.registerSingleton<IContratosRepository>(
+  "ContratosRepository",
+  ContratosRepository
 );
