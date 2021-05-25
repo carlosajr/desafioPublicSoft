@@ -1,16 +1,53 @@
 import PrestadoresController from "@modules/prestadores/infra/http/controllers/PrestadoresController";
 import ensureAuthenticated from "@modules/usuarios/infra/http/middlewares/ensureAuthenticated";
+import { celebrate, Segments, Joi } from "celebrate";
 import { Router } from "express";
 
 const prestadoresRoutes = Router();
 const prestadoresController = new PrestadoresController();
 
 prestadoresRoutes.use(ensureAuthenticated);
-
-prestadoresRoutes.post("/", prestadoresController.create);
+// tipo_pessoa,cpf_cnpj,nome,email,cep,endereco,numero,complemento,bairro,cidade_id,estado_id,
+prestadoresRoutes.post(
+  "/",
+  celebrate({
+    [Segments.BODY]: {
+      tipo_pessoa: Joi.string().required(),
+      cpf_cnpj: Joi.string().required(),
+      nome: Joi.string().required(),
+      email: Joi.string().email().required(),
+      cep: Joi.string().length(8).required(),
+      endereco: Joi.string().required(),
+      numero: Joi.number().required(),
+      complemento: Joi.string(),
+      bairro: Joi.string().required(),
+      cidade_id: Joi.string().required(),
+      estado_id: Joi.string().required(),
+    },
+  }),
+  prestadoresController.create
+);
 prestadoresRoutes.get("/", prestadoresController.index);
 prestadoresRoutes.get("/:prestador_id", prestadoresController.show);
-prestadoresRoutes.put("/:prestador_id", prestadoresController.update);
+prestadoresRoutes.put(
+  "/:prestador_id",
+  celebrate({
+    [Segments.BODY]: {
+      tipo_pessoa: Joi.string().required(),
+      cpf_cnpj: Joi.string().required(),
+      nome: Joi.string().required(),
+      email: Joi.string().email().required(),
+      cep: Joi.string().length(8).required(),
+      endereco: Joi.string().required(),
+      numero: Joi.number().required(),
+      complemento: Joi.string(),
+      bairro: Joi.string().required(),
+      cidade_id: Joi.string().required(),
+      estado_id: Joi.string().required(),
+    },
+  }),
+  prestadoresController.update
+);
 prestadoresRoutes.delete("/:prestador_id", prestadoresController.delete);
 
 export default prestadoresRoutes;

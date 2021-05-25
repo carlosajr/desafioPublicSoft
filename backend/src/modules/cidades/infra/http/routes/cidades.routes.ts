@@ -9,6 +9,5 @@ const cidadeController = new CidadesController();
 cidadesRoutes.use(ensureAuthenticated);
 
 cidadesRoutes.get("/", cidadeController.index);
-cidadesRoutes.post("/", cidadeController.create);
 
 export default cidadesRoutes;
