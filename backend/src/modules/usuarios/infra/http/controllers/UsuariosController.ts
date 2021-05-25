@@ -1,4 +1,5 @@
 import CreateUsuarioService from "@modules/usuarios/services/CreateUsuarioService";
+import { classToClass } from "class-transformer";
 import { Request, Response } from "express";
 import { container } from "tsyringe";
 
@@ -14,8 +15,6 @@ export default class UsuarioController {
       senha,
     });
 
-    delete usuario.senha;
-
-    return response.status(201).json(usuario);
+    return response.status(201).json({ usuario: classToClass(usuario) });
   }
 }

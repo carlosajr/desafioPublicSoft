@@ -1,3 +1,4 @@
+import { Exclude } from "class-transformer";
 import {
   Entity,
   Column,
@@ -18,6 +19,7 @@ class Usuario {
   email: string;
 
   @Column()
+  @Exclude()
   senha: string;
 
   @CreateDateColumn()

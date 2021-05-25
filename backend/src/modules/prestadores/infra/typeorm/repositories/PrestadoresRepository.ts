@@ -28,6 +28,7 @@ class PrestadorRepository implements IPrestadorRepository {
 
   public async show(id: string): Promise<Prestador | undefined> {
     const prestador = await this.ormRepository.findOne({
+      relations: ["cidade", "estado"],
       where: { id, ativo: true },
     });
 
