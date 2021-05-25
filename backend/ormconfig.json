@@ -1,9 +1,9 @@
 {
   "type": "postgres",
-  "host": "localhost",
+  "host": "161.35.125.187",
   "port": 5432,
   "username": "postgres",
-  "password": "docker",
+  "password": "root",
   "database": "desafio_PublicSoft",
   "entities": [
     "./src/modules/**/infra/typeorm/entities/*.ts"

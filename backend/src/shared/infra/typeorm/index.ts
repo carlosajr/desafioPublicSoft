@@ -1,3 +1,8 @@
-import { createConnection } from "typeorm";
+import { Connection, createConnection } from "typeorm";
 
-createConnection();
+export default class DataBase {
+  public async conecta(): Promise<Connection> {
+    const connection = await createConnection();
+    return connection;
+  }
+}
