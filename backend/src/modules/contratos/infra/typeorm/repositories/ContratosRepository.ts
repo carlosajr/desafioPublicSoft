@@ -1,7 +1,7 @@
 import ICreateContratoDTO from "@modules/contratos/dtos/ICreateContratoDTO";
 import Contrato from "@modules/contratos/infra/typeorm/entities/Contrato";
 import IContratosRepository from "@modules/contratos/repositories/IContratosRepository";
-import { getRepository, Repository } from "typeorm";
+import { getRepository, Repository, Between } from "typeorm";
 
 class ContratoRepository implements IContratosRepository {
   private ormRepository: Repository<Contrato>;
@@ -50,6 +50,20 @@ class ContratoRepository implements IContratosRepository {
     });
 
     return contrato;
+  }
+
+  public async findByDataFim(
+    data_limite: Date
+  ): Promise<Contrato[] | undefined> {
+    const contratos = await this.ormRepository.find({
+      relations: ["prestador"],
+      where: {
+        ativo: true,
+        data_fim: Between(new Date(), data_limite),
+      },
+    });
+
+    return contratos;
   }
 }
 

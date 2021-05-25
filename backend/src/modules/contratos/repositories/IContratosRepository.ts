@@ -7,4 +7,5 @@ export default interface IPrestadorRepository {
   show(id: string): Promise<Contrato | undefined>;
   update(contrato: Contrato): Promise<Contrato>;
   findById(id: string): Promise<Contrato | undefined>;
+  findByDataFim(data_limite: Date): Promise<Contrato[] | undefined>;
 }
