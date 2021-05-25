@@ -1,4 +1,5 @@
 import express, { Request, Response, NextFunction } from "express";
+import "dotenv/config";
 
 import "express-async-errors";
 import AppError from "@shared/errors/AppErrors";
@@ -37,4 +38,4 @@ app.use(
   }
 );
 
-app.listen(3333, () => console.log("Server is running!"));
+app.listen(process.env.PORT, () => console.log("Server is running!"));
