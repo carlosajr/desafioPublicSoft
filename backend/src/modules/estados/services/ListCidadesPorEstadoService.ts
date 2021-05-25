@@ -18,7 +18,6 @@ class ListCidadesPorEstadoService {
   }
 
   public async execute({ codigo_estado }: IRequestDTO): Promise<Cidade[]> {
-    console.log(codigo_estado);
     const estados = await this.cidadesRepository.findByCodigoEstado(
       codigo_estado
     );

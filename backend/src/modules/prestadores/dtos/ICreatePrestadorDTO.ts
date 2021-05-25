@@ -1,4 +1,5 @@
 export default interface ICreatePrestadorDTO {
+  id?: string;
   tipo_pessoa: string;
   cpf_cnpj: string;
   nome: string;
