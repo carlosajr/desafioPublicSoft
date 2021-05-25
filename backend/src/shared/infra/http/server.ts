@@ -1,10 +1,12 @@
-import express, { Request, Response, NextFunction } from "express";
-import "dotenv/config";
-
-import "express-async-errors";
-import AppError from "@shared/errors/AppErrors";
-
 import { errors } from "celebrate";
+import express, { Request, Response, NextFunction } from "express";
+import swaggerUi from "swagger-ui-express";
+
+import AppError from "@shared/errors/AppErrors";
+import swaggerDoc from "@shared/infra/api-schema.json";
+
+import "dotenv/config";
+import "express-async-errors";
 
 import "reflect-metadata";
 import DataBase from "@shared/infra/typeorm/";
@@ -14,13 +16,15 @@ import routes from "./routes";
 import "@shared/container";
 
 const dataBase = new DataBase();
-const connection = dataBase.conecta().then(() => console.log("carregado"));
+dataBase.conecta().then(() => console.log("DB Connected"));
 
 const app = express();
 
 app.use(express.json());
 
 app.use(routes);
+
+app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 
 app.use(errors());
 

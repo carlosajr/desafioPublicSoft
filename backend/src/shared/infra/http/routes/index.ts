@@ -12,12 +12,12 @@ import infoRoutes from "./info.routes";
 const routes = Router();
 
 routes.use("/", infoRoutes);
+routes.use("/cep", cepRoutes);
 routes.use("/cidades", cidadesRoutes);
 routes.use("/estados", estadosRoutes);
 routes.use("/usuarios", usuariosRoutes);
 routes.use("/sessions", sessionsRoutes);
 routes.use("/prestadores", prestadoresRoutes);
 routes.use("/contratos", contratosRoutes);
-routes.use("/cep", cepRoutes);
 
 export default routes;

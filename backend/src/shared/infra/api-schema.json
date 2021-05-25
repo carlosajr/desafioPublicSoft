@@ -1,0 +1,546 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "version": "1.0.0",
+    "title": "Desafio PublicSoft",
+    "description": "Api desenvolvida em NODE utilizado os principiso SOLID e DDD",
+    "license": {
+      "name": "License MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "paths": {
+    "/cep/{numeroDoCep}": {
+      "get": {
+        "description": "Pegar o Endereco pelo CEP",
+        "operationId": "getEndereco",
+        "parameters": [
+          {
+            "name": "bearer token",
+            "in": "header",
+            "schema": {
+              "$ref": "#/components/schemas/jwtToken"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Endereco",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CepGetResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usuarios": {
+      "post": {
+        "description": "Criar um Novo usuario",
+        "operationId": "createUser",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Usuario"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Usuario cadastrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserCreatedResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Paramentros Invalidos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "status": "error",
+                  "message": "Endereço de email já utilizado"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sessions": {
+      "post": {
+        "description": "Autenticar o usuario e gerar o JWT",
+        "operationId": "authenticateUser",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserAuth"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Usuario Autenticado e JWT retornado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthenticatedUserResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "status": "erro",
+                  "message": "email ou senha invalidos"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cidades": {
+      "get": {
+        "description": "Pegar a lista de Cidades",
+        "operationId": "getCidades",
+        "parameters": [
+          {
+            "name": "bearer token",
+            "in": "header",
+            "schema": {
+              "$ref": "#/components/schemas/jwtToken"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Listade Cidades",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CidadesGetResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/estados": {
+      "get": {
+        "description": "Pegar a lista de estados",
+        "operationId": "getEstados",
+        "parameters": [
+          {
+            "name": "bearer token",
+            "in": "header",
+            "schema": {
+              "$ref": "#/components/schemas/jwtToken"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Listade Estados",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EstadoGetResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/estados/{codigo_estado}/cidades": {
+      "get": {
+        "description": "Pegar a lista de cidades por estado",
+        "operationId": "getCidadesEstado",
+        "parameters": [
+          {
+            "name": "bearer token",
+            "in": "header",
+            "schema": {
+              "$ref": "#/components/schemas/jwtToken"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista de Cidades Por Estado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CidadesGetResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "jwtToken": {
+        "type": "string",
+        "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTdmZTQ0YzQzYWQwYjAwMThmOGQ5ZmQiLCJuYW1lIjoiV2FsZGVtYXIgTmV0byIsImVtYWlsIjoid2FsZGVtYXJudEBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCRsUlZjWkc5d0dIVWJXcHF2TnJNR0F1SnNoWWJTR1RLSElQL3NycDlmTlkzZENFZDBJQjN6TyIsImlhdCI6MTU4NTQ0MDUxNywiZXhwIjoxNTg1NDYwNTE3fQ.JNtzLgCKGTAU9_-QjYUNxtM7X4nMU_pPIsNXDsEM-vP"
+      },
+      "nome": {
+        "type": "string",
+        "example": "John Doe"
+      },
+      "email": {
+        "type": "string",
+        "example": "john@mail.com"
+      },
+      "senha": {
+        "type": "string",
+        "example": "12345678"
+      },
+      "codigo_estado": {
+        "type": "number",
+        "example": 100117
+      },
+      "cep": {
+        "type": "number",
+        "example": 58064370
+      },
+      "codigo": {
+        "type": "number",
+        "example": 100117004
+      },
+      "logradouro": {
+        "type": "string",
+        "example": "Rua Lauro Bezerra Cavalcante"
+      },
+      "id": {
+        "type": "string",
+        "example": "bcbcb486-2726-4d42-82de-05ab1138bf1f"
+      },
+      "created_at": {
+        "type": "string",
+        "example": "2021-05-25T21:42:38.554Z"
+      },
+      "updated_at": {
+        "type": "string",
+        "example": "2021-05-25T21:42:38.554Z"
+      },
+      "complemento": {
+        "type": "string",
+        "example": ""
+      },
+      "bairro": {
+        "type": "string",
+        "example": "Torre"
+      },
+      "localidade": {
+        "type": "string",
+        "example": "João Pessoa"
+      },
+      "uf": {
+        "type": "string",
+        "example": "PB"
+      },
+      "Usuario": {
+        "type": "object",
+        "properties": {
+          "nome": {
+            "$ref": "#/components/schemas/nome"
+          },
+          "email": {
+            "$ref": "#/components/schemas/email"
+          },
+          "senha": {
+            "$ref": "#/components/schemas/senha"
+          }
+        }
+      },
+      "Beach": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "$ref": "#/components/schemas/beachName"
+          },
+          "lat": {
+            "$ref": "#/components/schemas/beachLat"
+          },
+          "lng": {
+            "$ref": "#/components/schemas/beachLng"
+          },
+          "position": {
+            "$ref": "#/components/schemas/beachPosition"
+          }
+        },
+        "required": [
+          "name",
+          "lat",
+          "lng",
+          "position"
+        ]
+      },
+      "TimeForecast": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "time": {
+              "type": "string",
+              "example": "2019-05-31T08:00:00+00:00"
+            },
+            "forecast": {
+              "$ref": "#/components/schemas/BeachForecast"
+            }
+          }
+        }
+      },
+      "BeachForecast": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "$ref": "#/components/schemas/beachName"
+            },
+            "lat": {
+              "$ref": "#/components/schemas/beachLat"
+            },
+            "lng": {
+              "$ref": "#/components/schemas/beachLng"
+            },
+            "position": {
+              "$ref": "#/components/schemas/beachPosition"
+            },
+            "rating": {
+              "type": "number",
+              "example": 3
+            },
+            "swellDirection": {
+              "type": "number",
+              "description": "Swell direction in degrees",
+              "example": 300
+            },
+            "swellHeight": {
+              "type": "number",
+              "description": "Swell height in meters",
+              "example": 1
+            },
+            "swellPeriod": {
+              "type": "number",
+              "description": "Swell period in seconds",
+              "example": 13.67
+            },
+            "waveDirection": {
+              "type": "number",
+              "description": "Wave direction in degrees",
+              "example": 234
+            },
+            "waveHeight": {
+              "type": "number",
+              "description": "Wave height in meters",
+              "example": 1.5
+            },
+            "windDirection": {
+              "type": "number",
+              "description": "Wind direction in degrees",
+              "example": 234
+            },
+            "windSpeed": {
+              "type": "number",
+              "description": "Wind speed in meters per second",
+              "example": 10
+            },
+            "time": {
+              "type": "string",
+              "example": "2019-05-31T08:00:00+00:00"
+            }
+          }
+        }
+      },
+      "UserAuth": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "$ref": "#/components/schemas/email"
+          },
+          "senha": {
+            "$ref": "#/components/schemas/senha"
+          }
+        }
+      },
+      "UserCreatedResponse": {
+        "type": "object",
+        "properties": {
+          "user": {
+            "type": "object",
+            "properties": {
+              "nome": {
+                "$ref": "#/components/schemas/nome"
+              },
+              "email": {
+                "$ref": "#/components/schemas/email"
+              },
+              "id": {
+                "$ref": "#/components/schemas/id"
+              },
+              "created_at": {
+                "$ref": "#/components/schemas/created_at"
+              },
+              "updated_at": {
+                "$ref": "#/components/schemas/updated_at"
+              }
+            }
+          }
+        }
+      },
+      "AuthenticatedUserResponse": {
+        "type": "object",
+        "properties": {
+          "user": {
+            "type": "object",
+            "properties": {
+              "nome": {
+                "$ref": "#/components/schemas/nome"
+              },
+              "email": {
+                "$ref": "#/components/schemas/email"
+              },
+              "id": {
+                "$ref": "#/components/schemas/id"
+              },
+              "created_at": {
+                "$ref": "#/components/schemas/created_at"
+              },
+              "updated_at": {
+                "$ref": "#/components/schemas/updated_at"
+              }
+            }
+          },
+          "token": {
+            "$ref": "#/components/schemas/jwtToken"
+          }
+        }
+      },
+      "CidadesGetResponse": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "$ref": "#/components/schemas/id"
+            },
+            "codigo_estado": {
+              "$ref": "#/components/schemas/codigo_estado"
+            },
+            "codigo": {
+              "$ref": "#/components/schemas/codigo"
+            },
+            "nome": {
+              "$ref": "#/components/schemas/nome"
+            }
+          }
+        }
+      },
+      "CepGetResponse": {
+        "type": "object",
+        "properties": {
+          "cep": {
+            "$ref": "#/components/schemas/cep"
+          },
+          "logradouro": {
+            "$ref": "#/components/schemas/codigo_estado"
+          },
+          "complemento": {
+            "$ref": "#/components/schemas/codigo"
+          },
+          "bairro": {
+            "$ref": "#/components/schemas/nome"
+          },
+          "localidade": {
+            "$ref": "#/components/schemas/nome"
+          },
+          "uf": {
+            "$ref": "#/components/schemas/nome"
+          }
+        }
+      },
+      "EstadoGetResponse": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "$ref": "#/components/schemas/id"
+            },
+            "codigo": {
+              "$ref": "#/components/schemas/codigo"
+            },
+            "nome": {
+              "$ref": "#/components/schemas/nome"
+            }
+          }
+        }
+      },
+      "BeachCreatedResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/id"
+          },
+          "name": {
+            "$ref": "#/components/schemas/beachName"
+          },
+          "lat": {
+            "$ref": "#/components/schemas/beachLat"
+          },
+          "lng": {
+            "$ref": "#/components/schemas/beachLng"
+          },
+          "position": {
+            "$ref": "#/components/schemas/beachPosition"
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "message": {
+            "type": "number"
+          }
+        }
+      }
+    }
+  }
+}
