@@ -39,7 +39,7 @@ contratosRoutes.put(
 contratosRoutes.delete("/:contrato_id", contratosController.delete);
 
 contratosRoutes.get("/prazo/:prazo", contratosFilterController.list);
-contratosRoutes.get("/prazo/count/:prazo", contratosFilterController.count);
+contratosRoutes.get("/prazo/:prazo/count/", contratosFilterController.count);
 contratosRoutes.get(
   "/:contrato_id/prazo/restante/",
   contratosFilterController.show
