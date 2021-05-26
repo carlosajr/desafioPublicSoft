@@ -58,6 +58,24 @@ class ContratoRepository implements IContratosRepository {
 
     return findContrato;
   }
+
+  public async findByDataFim(
+    data_limite: Date
+  ): Promise<Contrato[] | undefined> {
+    const contratosAtivos: Contrato[] = [];
+
+    this.contratos.forEach(function (contrato) {
+      if (
+        contrato.ativo === true &&
+        contrato.data_inicio > new Date() &&
+        contrato.data_fim < data_limite
+      ) {
+        contratosAtivos.push(contrato);
+      }
+    });
+
+    return contratosAtivos;
+  }
 }
 
 export default ContratoRepository;

@@ -1,3 +1,4 @@
+import "dotenv/config";
 import authConfig from "@config/auth";
 import Usuario from "@modules/usuarios/infra/typeorm/entities/Usuario";
 import IHashProvider from "@modules/usuarios/providers/models/IHashProvider";
@@ -46,7 +47,7 @@ class AuthenticateUsuarioService {
     }
 
     const { secret, expiresIn } = authConfig.jwt;
-
+    console.log(secret, expiresIn);
     const token = sign({}, secret, {
       subject: usuario.id,
       expiresIn,
