@@ -16,7 +16,6 @@ Swagger - [Documentação da API](http://api.desafiopublicsoft.cvmakers.com.br/)
 
 As seguintes ferramentas foram usadas na construção do projeto:
 
-- Expo
 - Node.js
   - Express
   - Typeorm
