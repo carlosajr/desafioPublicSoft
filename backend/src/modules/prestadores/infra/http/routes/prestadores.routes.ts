@@ -33,8 +33,6 @@ prestadoresRoutes.put(
   "/:prestador_id",
   celebrate({
     [Segments.BODY]: {
-      tipo_pessoa: Joi.string().required(),
-      cpf_cnpj: Joi.string().required(),
       nome: Joi.string().required(),
       email: Joi.string().email().required(),
       cep: Joi.string().length(8).required(),

@@ -3,17 +3,17 @@ import { Component, OnChanges, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-prestadores-create',
-  templateUrl: './prestadores-create.component.html',
-  styleUrls: ['./prestadores-create.component.css']
+  selector: 'app-prestadores-update',
+  templateUrl: './prestadores-update.component.html',
+  styleUrls: ['./prestadores-update.component.css']
 })
-export class PrestadoresCreateComponent implements OnInit {
+export class PrestadoresUpdateComponent implements OnInit {
   validateForm!: FormGroup;
+  prestador_id = '';
 
-  tipo_pessoa = 'PF';
-  cpf_cnpj = '';
   nome = '';
   email = '';
   cep = '';
@@ -34,12 +34,11 @@ export class PrestadoresCreateComponent implements OnInit {
     private consumerService: ConsumerService,
     private alert: NzMessageService,
     private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
-      seleTipoPessoa: [null, [Validators.required]],
-      cpf_cnpj: [null, [Validators.required]],
       nome: [null, [Validators.required]],
       email: [null, [Validators.required]],
       cep: [null, [Validators.required]],
@@ -51,7 +50,33 @@ export class PrestadoresCreateComponent implements OnInit {
       seleCidades: [null, [Validators.required]],
     });
 
+    this.prestador_id = this.route.snapshot.params.prestador_id
+
     this.getEstados();
+
+    this.consumerService.get('/prestadores/' + this.prestador_id)
+      .subscribe(response => {
+        this.consumerService.get('/estados/' + response.estado + '/cidades')
+          .subscribe(responseCidades => {
+            this.cidades = responseCidades
+            this.nome = response.nome,
+              this.email = response.email,
+              this.cep = response.cep,
+              this.endereco = response.endereco,
+              this.numero = response.numero,
+              this.complemento = response.complemento,
+              this.bairro = response.bairro,
+              this.cidade = response.cidade,
+              this.estado = response.estado
+          })
+      },
+        error => {
+          this.buttonDisabled = false;
+          this.alert.error(error.error.message);
+        }
+      );
+    console.log(prestador_id)
+
 
   }
 
@@ -64,9 +89,7 @@ export class PrestadoresCreateComponent implements OnInit {
     if (this.validateForm.valid) {
       this.buttonDisabled = true;
 
-      this.consumerService.post('/prestadores', {
-        tipo_pessoa: this.tipo_pessoa,
-        cpf_cnpj: this.cpf_cnpj,
+      this.consumerService.put('/prestadores/' + this.prestador_id, {
         nome: this.nome,
         email: this.email,
         cep: this.cep,
@@ -77,7 +100,7 @@ export class PrestadoresCreateComponent implements OnInit {
         cidade: this.cidade,
         estado: this.estado
       }).subscribe(response => {
-        this.alert.success('Prestador cadastrado!', { nzDuration: 5000 });
+        this.alert.success('Prestador Atualizado!', { nzDuration: 5000 });
         this.router.navigate(['/pages/prestadores/'])
       },
         error => {
@@ -87,8 +110,6 @@ export class PrestadoresCreateComponent implements OnInit {
       );
       ;
     }
-
-
   }
 
   onBlurCep(event: any) {
@@ -120,7 +141,5 @@ export class PrestadoresCreateComponent implements OnInit {
         this.estados = response;
       })
   }
-
-
 
 }

@@ -1,26 +1,5 @@
 <div nz-col nzSpan="12">
   <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
-
-    <nz-form-item>
-      <nz-form-control nzErrorTip="Informe seu nome">
-        <nz-input-group>
-          <nz-select style="width: 250px;" nzPlaceHolder="Tipo de Pessoa" formControlName="seleTipoPessoa"
-            [(ngModel)]="tipo_pessoa">
-            <nz-option selected nzValue="PF" nzLabel="Pessoa Fisica"></nz-option>
-            <nz-option nzValue="PJ" nzLabel="Pessoa Juridica"></nz-option>
-          </nz-select>
-        </nz-input-group>
-      </nz-form-control>
-    </nz-form-item>
-    <nz-form-item>
-      <nz-form-control [nzErrorTip]="tipo_pessoa == 'PF' ? 'Informe um CPF Valido' : 'Informe um CNPJ Valido'">
-        <nz-input-group>
-          <input [(ngModel)]="cpf_cnpj" type="text" nz-input ngModel [minlength]="tipo_pessoa == 'PF' ? 11 : 14"
-            [maxlength]="tipo_pessoa == 'PF' ? 11 : 14" [placeholder]="tipo_pessoa == 'PF' ? 'CPF' : 'CNPJ'"
-            formControlName="cpf_cnpj" />
-        </nz-input-group>
-      </nz-form-control>
-    </nz-form-item>
     <nz-form-item>
       <nz-form-control nzErrorTip="Informe seu nome">
         <nz-input-group>
@@ -96,4 +75,4 @@
     <div nz-row class="login-form-margin">
     </div>
     <button nz-button class="login-form-button login-form-margin" [disabled]="buttonDisabled"
-      nzType="primary">Cadastrar</button>
+      nzType="primary">Atualizar</button>

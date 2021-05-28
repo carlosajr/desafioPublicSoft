@@ -1,3 +1,4 @@
+import { PrestadoresUpdateComponent } from './prestadores-update/prestadores-update.component';
 import { PrestadoresCreateComponent } from './prestadores-create/prestadores-create.component';
 import { PrestadoresListComponent } from './prestadores-list/prestadores-list.component';
 import { PrestadoresComponent } from './prestadores.component';
@@ -17,6 +18,10 @@ const routes: Routes = [
       {
         path: 'cadastrar',
         component: PrestadoresCreateComponent,
+      },
+      {
+        path: 'atualizar/:prestador_id',
+        component: PrestadoresUpdateComponent,
       }
     ]
   }
