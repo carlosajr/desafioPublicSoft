@@ -80,6 +80,6 @@ $ ng serve
 
 ```
 
-<h3 align="center">Agradeço a Oportunidade e fico no aguardo</h3>
+<h3 align="center">Agradeço a oportunidade de participar deste desafio 😉 </h3>
 
 
