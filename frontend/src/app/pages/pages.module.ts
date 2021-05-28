@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -10,7 +11,6 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { PagesRoutingModule } from './pages-routing.module';
 import { PagesComponent } from './pages.component';
 
-
 @NgModule({
   declarations: [PagesComponent],
   imports: [
@@ -18,7 +18,7 @@ import { PagesComponent } from './pages.component';
     PagesRoutingModule,
     NzLayoutModule,
     NzMenuModule,
-    IconsProviderModule,
+    IconsProviderModule
   ]
 })
 export class PagesModule { }

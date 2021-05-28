@@ -23,8 +23,10 @@
       <td>
         <button routerLink="atualizar/{{data.id}}" route style="margin-right:10px;" nz-button nzType="primary" nzWarning
           nzSize="small"><i nz-icon nzType="edit" nzWarning nzTheme="outline"></i></button>
-        <button routerLink="deletar/{{data.id}}" nz-button nzType="primary" nzDanger nzSize="small"><i nz-icon
-            nzType="delete" nzDanger nzTheme="outline"></i></button>
+        <button routerLink="deletar/{{data.id}}" style="margin-right:10px;" nz-button nzType="primary" nzDanger
+          nzSize="small"><i nz-icon nzType="delete" nzDanger nzTheme="outline"></i></button>
+        <button (click)="onClick($event)" id="{{data.id}}" nz-button nzType="primary" nzSize="small"><i nz-icon
+            nzType="calendar" nzDanger nzTheme="outline"></i></button>
 
       </td>
     </tr>

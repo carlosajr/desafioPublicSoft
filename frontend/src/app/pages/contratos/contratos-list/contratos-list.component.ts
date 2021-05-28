@@ -8,6 +8,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { registerLocaleData } from '@angular/common';
 import localeBr from '@angular/common/locales/pt';
 import { DatePipe } from '@angular/common';
+import { NzModalService } from 'ng-zorro-antd/modal';
 
 interface ColumnItem {
   name: string;
@@ -78,14 +79,27 @@ export class ContratosListComponent implements OnInit {
     }
   ];
 
-
-
-
   constructor(
     private consumerService: ConsumerService,
     private router: Router,
+    private modal: NzModalService
   ) { }
 
+  onClick(event) {
+    const id = event.target.attributes.id.value;
+    this.consumerService
+      .get(`/contratos/${id}/prazo/restante/`)
+      .subscribe(response => {
+        const diasRestantes = response.dias_restantes == 0
+          ? 'Hoje'
+          : `Em ${response.dias_restantes} dias.`
+        this.modal.info({
+          nzTitle: 'Este Contrato vence ',
+          nzContent: '<h1>' + diasRestantes + ' </h1>',
+          nzOnOk: () => console.log('Info OK')
+        });
+      })
+  }
 
   ngOnInit(): void {
     this.consumerService.get('/contratos/')

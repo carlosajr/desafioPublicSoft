@@ -35,7 +35,7 @@ export class PrestadoresListComponent implements OnInit {
 
   listOfColumns: ColumnItem[] = [
     {
-      name: 'tipo_pessoa',
+      name: 'Tipo Pessoa',
       sortOrder: null,
       sortFn: (a: Prestador, b: Prestador) => a.tipo_pessoa.localeCompare(b.tipo_pessoa),
       sortDirections: ['ascend', 'descend', null],
@@ -47,7 +47,7 @@ export class PrestadoresListComponent implements OnInit {
       filterFn: (list: string[], item: Prestador) => list.some(tipo_pessoa => item.tipo_pessoa.indexOf(tipo_pessoa) !== -1)
     },
     {
-      name: 'cpf_cnpj',
+      name: 'CPF/CNPJ',
       sortOrder: 'descend',
       sortFn: (a: Prestador, b: Prestador) => a.cpf_cnpj.localeCompare(b.cpf_cnpj),
       sortDirections: ['ascend', 'descend', null],
@@ -56,7 +56,7 @@ export class PrestadoresListComponent implements OnInit {
       filterMultiple: false
     },
     {
-      name: 'nome',
+      name: 'Nome',
       sortOrder: null,
       sortDirections: ['ascend', 'descend', null],
       sortFn: (a: Prestador, b: Prestador) => a.nome.length - b.nome.length,
@@ -65,7 +65,7 @@ export class PrestadoresListComponent implements OnInit {
       listOfFilter: [],
     },
     {
-      name: 'estado',
+      name: 'Estado',
       sortOrder: null,
       sortDirections: ['ascend', 'descend', null],
       sortFn: (a: Prestador, b: Prestador) => a.estado.length - b.estado.length,
@@ -77,7 +77,7 @@ export class PrestadoresListComponent implements OnInit {
       filterFn: (address: string, item: Prestador) => item.estado.indexOf(address) !== -1
     },
     {
-      name: 'cidade',
+      name: 'Cidade',
       sortOrder: null,
       sortDirections: ['ascend', 'descend', null],
       sortFn: (a: Prestador, b: Prestador) => a.cidade.length - b.cidade.length,
