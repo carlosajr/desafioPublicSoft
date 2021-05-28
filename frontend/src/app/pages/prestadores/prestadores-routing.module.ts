@@ -1,10 +1,11 @@
-import { PrestadoresUpdateComponent } from './prestadores-update/prestadores-update.component';
-import { PrestadoresCreateComponent } from './prestadores-create/prestadores-create.component';
-import { PrestadoresListComponent } from './prestadores-list/prestadores-list.component';
-import { PrestadoresComponent } from './prestadores.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { PrestadoresComponent } from './prestadores.component';
+import { PrestadoresListComponent } from './prestadores-list/prestadores-list.component';
+import { PrestadoresCreateComponent } from './prestadores-create/prestadores-create.component';
+import { PrestadoresUpdateComponent } from './prestadores-update/prestadores-update.component';
+import { PrestadoresDeleteComponent } from './prestadores-delete/prestadores-delete.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
       {
         path: 'atualizar/:prestador_id',
         component: PrestadoresUpdateComponent,
+      },
+      {
+        path: 'deletar/:prestador_id',
+        component: PrestadoresDeleteComponent,
       }
     ]
   }

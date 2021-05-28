@@ -75,7 +75,6 @@ export class PrestadoresUpdateComponent implements OnInit {
           this.alert.error(error.error.message);
         }
       );
-    console.log(prestador_id)
 
 
   }

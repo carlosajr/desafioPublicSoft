@@ -1,30 +1,33 @@
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { PrestadoresRoutingModule } from './prestadores-routing.module';
-import { PrestadoresComponent } from './prestadores.component';
-import { PrestadoresListComponent } from './prestadores-list/prestadores-list.component';
-import { PrestadoresCreateComponent } from './prestadores-create/prestadores-create.component';
 import { IconsProviderModule } from '../icons-provider.module';
 
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzFormModule } from 'ng-zorro-antd/form';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzMessageModule } from 'ng-zorro-antd/message';
-import { PrestadoresUpdateComponent } from './prestadores-update/prestadores-update.component';
-import { PrestadoresDeleteComponent } from './prestadores-delete/prestadores-delete.component';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 
+import { ContratosRoutingModule } from './contratos-routing.module';
+import { ContratosComponent } from './contratos.component';
+import { ContratosListComponent } from './contratos-list/contratos-list.component';
+import { ContratosCreateComponent } from './contratos-create/contratos-create.component';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { ContratosDeleteComponent } from './contratos-delete/contratos-delete.component';
+import { ContratosUpdateComponent } from './contratos-update/contratos-update.component';
+
 @NgModule({
-  declarations: [PrestadoresComponent, PrestadoresListComponent, PrestadoresCreateComponent, PrestadoresUpdateComponent, PrestadoresDeleteComponent],
+  declarations: [ContratosComponent, ContratosListComponent, ContratosCreateComponent, ContratosDeleteComponent, ContratosUpdateComponent],
   imports: [
     CommonModule,
-    PrestadoresRoutingModule,
+    ContratosRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     NzButtonModule,
@@ -36,7 +39,8 @@ import { NzDividerModule } from 'ng-zorro-antd/divider';
     NzMessageModule,
     NzModalModule,
     NzTableModule,
-    NzDividerModule
+    NzDividerModule,
+    NzDatePickerModule
   ]
 })
-export class PrestadoresModule { }
+export class ContratosModule { }

@@ -51,7 +51,7 @@
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-      <nz-form-control nzErrorTip="Senhas Diferentes">
+      <nz-form-control nzErrorTip="Informe um numero">
         <nz-input-group>
           <input [(ngModel)]="numero" type="number" nz-input formControlName="numero" placeholder="Numero" />
         </nz-input-group>
@@ -75,8 +75,8 @@
     <nz-form-item>
       <nz-form-control nzErrorTip="Informe o Estado">
         <nz-input-group>
-          <nz-select style="width: 250px;" nzShowSearch nzAllowClear formControlName="seleEstados"
-            nzPlaceHolder="Estado" [(ngModel)]="estado">
+          <nz-select (ngModelChange)="onChange($event)" style="width: 250px;" nzShowSearch nzAllowClear
+            formControlName="seleEstados" nzPlaceHolder="Estado" [(ngModel)]="estado">
             <nz-option *ngFor="let estado of estados" [nzValue]="estado.sigla" [nzLabel]="estado.nome"></nz-option>
           </nz-select>
         </nz-input-group>
@@ -89,7 +89,6 @@
             nzPlaceHolder="Cidade" [(ngModel)]="cidade">
             <nz-option *ngFor="let cidade of cidades" [nzValue]="cidade.nome" [nzLabel]="cidade.nome"></nz-option>
           </nz-select>
-          <button (click)="getCidades()" nz-button nzType="primary"><i nz-icon nzType="download"></i></button>
         </nz-input-group>
       </nz-form-control>
     </nz-form-item>

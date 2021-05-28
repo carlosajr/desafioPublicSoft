@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class PrestadoresCreateComponent implements OnInit {
   validateForm!: FormGroup;
 
+
   tipo_pessoa = 'PF';
   cpf_cnpj = '';
   nome = '';
@@ -87,30 +88,18 @@ export class PrestadoresCreateComponent implements OnInit {
       );
       ;
     }
-
-
   }
 
   onBlurCep(event: any) {
     const cep = event.target.value;
     this.consumerService.get('/cep/' + cep)
       .subscribe(response => {
-        this.consumerService.get('/estados/' + response.uf + '/cidades')
-          .subscribe(responseCidades => {
-            this.cidades = responseCidades;
-            this.endereco = response.logradouro;
-            this.bairro = response.bairro;
-            this.cidade = response.localidade;
-            this.estado = response.uf;
-          })
-      })
-  }
+        this.estado = response.uf;
+        this.getCidades()
+        this.endereco = response.logradouro;
+        this.bairro = response.bairro;
+        this.cidade = response.localidade;
 
-  getCidades() {
-    this.cidade = '';
-    this.consumerService.get('/estados/' + this.estado + '/cidades')
-      .subscribe(responseCidades => {
-        this.cidades = responseCidades;
       })
   }
 
@@ -118,6 +107,19 @@ export class PrestadoresCreateComponent implements OnInit {
     this.consumerService.get('/estados')
       .subscribe(response => {
         this.estados = response;
+      })
+  }
+
+  onChange(result: string): void {
+    this.estado = result;
+    this.getCidades();
+  }
+
+  getCidades() {
+    this.cidade = '';
+    this.consumerService.get('/estados/' + this.estado + '/cidades')
+      .subscribe(responseCidades => {
+        this.cidades = responseCidades;
       })
   }
 

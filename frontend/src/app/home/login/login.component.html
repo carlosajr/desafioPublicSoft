@@ -1,4 +1,4 @@
-<div class="content" nz-row nzJustify="center" nzAlign="top" nzSpan="24">
+<div class="content" nz-row nzJustify="center" nzAlign="center" nzSpan="24">
   <div class="inner-content">
     <img src="../../../assets/logo-complete.png" alt="">
 
@@ -6,9 +6,9 @@
       <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
         <nz-form-item>
           <nz-form-control nzErrorTip="Informe um email valido">
-            <nz-input-group nzPrefixIcon="user">
+            <nz-input-group nzPrefixIcon="mail">
               <input [(ngModel)]="email" type="text" ngModel email nz-input formControlName="userName"
-                placeholder="Username" />
+                placeholder="Email" />
             </nz-input-group>
           </nz-form-control>
         </nz-form-item>

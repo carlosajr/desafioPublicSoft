@@ -1,0 +1,41 @@
+<div nz-col nzSpan="12">
+  <form nz-form class="login-form" (ngSubmit)="submitForm()">
+    <nz-form-item>
+      <nz-form-control>
+        <nz-input-group>
+          <nz-select style="width: 250px;" disabled="true" name="tipoPessoa" nzPlaceHolder="Tipo de Pessoa"
+            [(ngModel)]="tipo_pessoa">
+            <nz-option selected nzValue="PF" nzLabel="Pessoa Fisica"></nz-option>
+            <nz-option nzValue="PJ" nzLabel="Pessoa Juridica"></nz-option>
+          </nz-select>
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control>
+        <nz-input-group>
+          <input [(ngModel)]="cpf_cnpj" disabled="true" name="cpf_cnpj" type="text" nz-input ngModel
+            [placeholder]="tipo_pessoa == 'PF' ? 'CPF' : 'CNPJ'" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control>
+        <nz-input-group>
+          <input [(ngModel)]="nome" name="nome" disabled="true" type="text" nz-input placeholder="Nome" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control>
+        <nz-input-group>
+          <input [(ngModel)]="email" name="email" disabled="true" type="text" nz-input placeholder="Email" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <div nz-row class="login-form-margin">
+    </div>
+    <button nz-button nzDanger class="login-form-button login-form-margin" [disabled]="buttonDisabled"
+      nzType="primary">Deletar</button>
+  </form>
+</div>

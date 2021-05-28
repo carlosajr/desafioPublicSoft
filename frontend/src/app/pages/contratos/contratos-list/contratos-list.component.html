@@ -15,11 +15,11 @@
   </thead>
   <tbody>
     <tr *ngFor="let data of filterTable.data">
-      <td>{{ data.tipo_pessoa }}</td>
-      <td>{{ data.cpf_cnpj }}</td>
-      <td>{{ data.nome }}</td>
-      <td>{{ data.estado }}</td>
-      <td>{{ data.cidade }}</td>
+      <td>{{ data.prestador.nome }}</td>
+      <td>{{ data.prestador.tipo_pessoa }}</td>
+      <td>{{ data.servico_prestado }}</td>
+      <td>{{ data.data_inicio | date:'dd/MM/yyyy' }}</td>
+      <td>{{ data.data_fim | date:'dd/MM/yyyy' }}</td>
       <td>
         <button routerLink="atualizar/{{data.id}}" route style="margin-right:10px;" nz-button nzType="primary" nzWarning
           nzSize="small"><i nz-icon nzType="edit" nzWarning nzTheme="outline"></i></button>

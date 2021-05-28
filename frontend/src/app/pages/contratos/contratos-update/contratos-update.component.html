@@ -1,0 +1,50 @@
+<div nz-col nzSpan="16">
+  <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Selecione um Prestador do serviço">
+        <nz-input-group>
+          <nz-select style="width: 250px;" formControlName="prestadorId" nzShowSearch nzAllowClear
+            aria-placeholder="Selecione o Prestador do serviço" nzPlaceHolder="Selecione o Prestador do serviço"
+            [(ngModel)]="prestador_id">
+            <nz-option *ngFor="let prestador of prestadores" [nzValue]="prestador.id"
+              [nzLabel]="prestador.nome + ' - ' + prestador.cpf_cnpj">
+            </nz-option>
+          </nz-select>
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Informe o Serviço prestado">
+        <nz-input-group>
+          <input [(ngModel)]="servico_prestado" type="text" nz-input formControlName="servicoPrestado"
+            placeholder="Serviço prestado" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Informe a data de inicio do contrato">
+        <nz-input-group>
+          Data Inicio do Contrato:
+          <nz-date-picker placeholder="Data Inicio do COntrato" formControlName="dataInicio" [(ngModel)]=" data_inicio">
+          </nz-date-picker>
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Informe a data de inicio do contrato">
+        <nz-input-group>
+          Data Final do Contrato:
+          <nz-date-picker placeholder="Data Final do COntrato" formControlName="dataFim" [(ngModel)]=" data_fim">
+          </nz-date-picker>
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+
+    <div nz-row class="login-form-margin">
+    </div>
+    <button nz-button class="login-form-button login-form-margin" [disabled]="buttonDisabled"
+      nzType="primary">Atualizar</button>

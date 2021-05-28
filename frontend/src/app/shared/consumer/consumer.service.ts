@@ -50,6 +50,17 @@ export class ConsumerService {
       .post(API + rota, data);
   }
 
+  delete(rota: string, autenticada: boolean = true): Observable<any> {
+    if (autenticada) {
+      const headers = this.generateHeaders();
+      return this.httpClient
+        .delete(API + rota, { headers });
+    }
+
+    return this.httpClient
+      .get(API + rota);
+  }
+
   private generateHeaders(): HttpHeaders {
     const token = TOKEN_PREFIX + this.tokenService.retornaToken();
     const headers = new HttpHeaders().append('Authorization', token);
