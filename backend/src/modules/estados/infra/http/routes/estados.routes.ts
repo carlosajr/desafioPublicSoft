@@ -9,7 +9,7 @@ estadosRoutes.use(ensureAuthenticated);
 
 estadosRoutes.get("/", estadosController.index);
 estadosRoutes.get(
-  "/:codigo_estado/cidades/",
+  "/:sigla_estado/cidades/",
   estadosController.showCidadesPorEstado
 );
 

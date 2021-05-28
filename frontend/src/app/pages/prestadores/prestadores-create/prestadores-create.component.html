@@ -35,10 +35,10 @@
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-      <nz-form-control nzErrorTip="Informe  o CEP">
+      <nz-form-control nzErrorTip="Informe um CEP valido">
         <nz-input-group>
-          <input [(ngModel)]="cep" (blur)="onBlurCep($event)" type="text" nz-input formControlName="cep"
-            placeholder="CEP" />
+          <input [(ngModel)]="cep" ngModel minlength="8" maxlength="8" (blur)="onBlurCep($event)" type="text" nz-input
+            formControlName="cep" placeholder="CEP" />
         </nz-input-group>
       </nz-form-control>
     </nz-form-item>
@@ -59,8 +59,15 @@
     <nz-form-item>
       <nz-form-control nzErrorTip="Senhas Diferentes">
         <nz-input-group>
-          <input [(ngModel)]="complemento" (change)="onChangeEstado($event)" type="text" nz-input
-            formControlName="complemento" placeholder="Complemento" />
+          <input [(ngModel)]="complemento" type="text" nz-input formControlName="complemento"
+            placeholder="Complemento" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Senhas Diferentes">
+        <nz-input-group>
+          <input [(ngModel)]="bairro" type="text" nz-input formControlName="bairro" placeholder="Bairro" />
         </nz-input-group>
       </nz-form-control>
     </nz-form-item>
@@ -68,8 +75,8 @@
       <nz-form-control nzErrorTip="Informe seu nome">
         <nz-input-group>
           <nz-select style="width: 250px;" nzShowSearch nzAllowClear formControlName="seleEstados"
-            nzPlaceHolder="Estado" [(ngModel)]="estado_id">
-            <nz-option *ngFor="let estado of estados" [nzValue]="estado.codigo" [nzLabel]="estado.nome"></nz-option>
+            nzPlaceHolder="Estado" [(ngModel)]="estado">
+            <nz-option *ngFor="let estado of estados" [nzValue]="estado.sigla" [nzLabel]="estado.nome"></nz-option>
           </nz-select>
         </nz-input-group>
       </nz-form-control>
@@ -78,7 +85,7 @@
       <nz-form-control nzErrorTip="Informe seu nome">
         <nz-input-group>
           <nz-select style="width: 250px;" nzShowSearch nzAllowClear formControlName="seleCidades"
-            nzPlaceHolder="Cidade" [(ngModel)]="cidade_id">
+            nzPlaceHolder="Cidade" [(ngModel)]="cidade">
             <nz-option *ngFor="let cidade of cidades" [nzValue]="cidade.codigo" [nzLabel]="cidade.nome"></nz-option>
           </nz-select>
         </nz-input-group>

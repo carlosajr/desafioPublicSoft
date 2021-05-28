@@ -19,10 +19,9 @@ export default class EstadosController {
     const listCidadesPorEstadoService = container.resolve(
       ListCidadesPorEstadoService
     );
-    const codigo_estado = parseInt(request.params.codigo_estado);
-
+    const { sigla_estado } = request.params;
     const cidades = await listCidadesPorEstadoService.execute({
-      codigo_estado,
+      sigla_estado,
     });
 
     return response.status(200).json(cidades);

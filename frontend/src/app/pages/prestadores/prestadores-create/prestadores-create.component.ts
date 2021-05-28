@@ -20,8 +20,8 @@ export class PrestadoresCreateComponent implements OnInit {
   numero = '';
   complemento = '';
   bairro = '';
-  cidade_id = '';
-  estado_id = '';
+  cidade = '';
+  estado = '';
 
   estados = [];
   cidades = [];
@@ -50,6 +50,7 @@ export class PrestadoresCreateComponent implements OnInit {
       endereco: [null, [Validators.required]],
       numero: [null, [Validators.required]],
       complemento: [null, [Validators.required]],
+      bairro: [null, [Validators.required]],
       seleEstados: [null, [Validators.required]],
       seleCidades: [null, [Validators.required]],
     });
@@ -59,7 +60,17 @@ export class PrestadoresCreateComponent implements OnInit {
   }
 
   onBlurCep(event: any) {
-    console.log(event.target.value);
+    const cep = event.target.value;
+
+    this.consumerService.get('/cep/' + cep)
+      .subscribe(response => {
+        console.log(response);
+        this.endereco = response.logradouro;
+        this.bairro = response.bairro;
+        this.cidade = response.localidade;
+        this.estado = response.uf;
+      })
+
   }
 
   onChangeEstado(event: any) {

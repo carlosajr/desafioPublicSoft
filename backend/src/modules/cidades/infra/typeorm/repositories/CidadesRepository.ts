@@ -29,9 +29,9 @@ class CidadesRepository implements ICidadeRepository {
     return findCidades;
   }
 
-  public async findBySiglaEstado(sigla_estado: string): Promise<Cidade[]> {
+  public async findBySiglaEstado(silga_estado: string): Promise<Cidade[]> {
     const findCidades = await this.ormRepository.find({
-      where: { sigla_estado },
+      where: { silga_estado },
     });
     return findCidades;
   }

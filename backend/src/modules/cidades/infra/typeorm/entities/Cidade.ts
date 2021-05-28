@@ -15,7 +15,7 @@ class Cidade {
   nome: string;
 
   @Column()
-  sigla_estado: string;
+  silga_estado: string;
 }
 
 export default Cidade;
