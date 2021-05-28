@@ -5,6 +5,8 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { IconsProviderModule } from './icons-provider.module';
 
+import { NzButtonModule } from 'ng-zorro-antd/button';
+
 import { PagesRoutingModule } from './pages-routing.module';
 import { PagesComponent } from './pages.component';
 
@@ -16,7 +18,7 @@ import { PagesComponent } from './pages.component';
     PagesRoutingModule,
     NzLayoutModule,
     NzMenuModule,
-    IconsProviderModule
+    IconsProviderModule,
   ]
 })
 export class PagesModule { }

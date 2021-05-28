@@ -9,6 +9,6 @@ export default interface ICreatePrestadorDTO {
   numero: number;
   complemento: string;
   bairro: string;
-  cidade_id: string;
-  estado_id: string;
+  cidade: string;
+  estado: string;
 }

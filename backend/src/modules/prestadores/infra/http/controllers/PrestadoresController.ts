@@ -18,8 +18,8 @@ export default class PrestadoresController {
       numero,
       complemento,
       bairro,
-      cidade_id,
-      estado_id,
+      cidade,
+      estado,
     } = request.body;
 
     const createPrestador = container.resolve(CreatePrestadorService);
@@ -34,8 +34,8 @@ export default class PrestadoresController {
       numero,
       complemento,
       bairro,
-      cidade_id,
-      estado_id,
+      cidade,
+      estado,
     });
 
     return response.status(201).json(prestador);
@@ -70,8 +70,8 @@ export default class PrestadoresController {
       numero,
       complemento,
       bairro,
-      cidade_id,
-      estado_id,
+      cidade,
+      estado,
     } = request.body;
 
     const updatePrestadorsService = container.resolve(UpdatePrestadorService);
@@ -87,8 +87,8 @@ export default class PrestadoresController {
       numero,
       complemento,
       bairro,
-      cidade_id,
-      estado_id,
+      cidade,
+      estado,
     });
 
     return response.status(200).json(prestador);

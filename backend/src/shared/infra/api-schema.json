@@ -818,11 +818,11 @@
         "type": "string",
         "example": "bcbcb486-2726-4d42-82de-05ab1138bf1f"
       },
-      "estado_id": {
+      "estado": {
         "type": "string",
         "example": "448b3e42-d03f-42c2-9ec4-b68e7023a50b"
       },
-      "cidade_id": {
+      "cidade": {
         "type": "string",
         "example": "443878cc-4309-47c4-825e-496ed3816931"
       },
@@ -1063,11 +1063,11 @@
           "bairro": {
             "$ref": "#/components/schemas/bairro"
           },
-          "cidade_id": {
-            "$ref": "#/components/schemas/cidade_id"
+          "cidade": {
+            "$ref": "#/components/schemas/cidade"
           },
-          "estado_id": {
-            "$ref": "#/components/schemas/estado_id"
+          "estado": {
+            "$ref": "#/components/schemas/estado"
           }
         }
       },
@@ -1105,10 +1105,10 @@
           "bairro": {
             "$ref": "#/components/schemas/bairro"
           },
-          "cidade_id": {
+          "cidade": {
             "$ref": "#/components/schemas/id"
           },
-          "estado_id": {
+          "estado": {
             "$ref": "#/components/schemas/id"
           },
           "ativo": {
@@ -1159,10 +1159,10 @@
             "bairro": {
               "$ref": "#/components/schemas/bairro"
             },
-            "cidade_id": {
+            "cidade": {
               "$ref": "#/components/schemas/id"
             },
-            "estado_id": {
+            "estado": {
               "$ref": "#/components/schemas/id"
             },
             "ativo": {

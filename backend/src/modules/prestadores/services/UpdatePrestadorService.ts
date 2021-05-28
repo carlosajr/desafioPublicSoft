@@ -42,8 +42,8 @@ class UpdatePrestadorService {
     prestador.numero = dataPrestador.numero;
     prestador.complemento = dataPrestador.complemento;
     prestador.bairro = dataPrestador.bairro;
-    prestador.cidade_id = dataPrestador.cidade_id;
-    prestador.estado_id = dataPrestador.estado_id;
+    prestador.cidade = dataPrestador.cidade;
+    prestador.estado = dataPrestador.estado;
 
     return this.prestadoresRepository.update(prestador);
   }

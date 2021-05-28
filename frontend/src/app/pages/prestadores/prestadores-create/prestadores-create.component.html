@@ -1,0 +1,90 @@
+<div nz-col nzSpan="12">
+  <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Informe seu nome">
+        <nz-input-group>
+          <nz-select style="width: 250px;" nzPlaceHolder="Tipo de Pessoa" formControlName="seleTipoPessoa"
+            [(ngModel)]="tipo_pessoa">
+            <nz-option selected nzValue="PF" nzLabel="Pessoa Fisica"></nz-option>
+            <nz-option nzValue="PJ" nzLabel="Pessoa Juridica"></nz-option>
+          </nz-select>
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Informe um email valido">
+        <nz-input-group>
+          <input [(ngModel)]="cpf_cnpj" type="text" nz-input [placeholder]="tipo_pessoa == 'PF' ? 'CPF' : 'CNPJ'"
+            formControlName="cpf_cnpj" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Informe seu nome">
+        <nz-input-group>
+          <input [(ngModel)]="nome" type="text" nz-input formControlName="nome" placeholder="Nome" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Informe um email valido">
+        <nz-input-group>
+          <input [(ngModel)]="email" type="text" nz-input formControlName="email" placeholder="Email" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Informe  o CEP">
+        <nz-input-group>
+          <input [(ngModel)]="cep" (blur)="onBlurCep($event)" type="text" nz-input formControlName="cep"
+            placeholder="CEP" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Senhas Diferentes">
+        <nz-input-group>
+          <input [(ngModel)]="endereco" type="text" nz-input formControlName="endereco" placeholder="Endereço" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Senhas Diferentes">
+        <nz-input-group>
+          <input [(ngModel)]="numero" type="number" nz-input formControlName="numero" placeholder="Numero" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Senhas Diferentes">
+        <nz-input-group>
+          <input [(ngModel)]="complemento" (change)="onChangeEstado($event)" type="text" nz-input
+            formControlName="complemento" placeholder="Complemento" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Informe seu nome">
+        <nz-input-group>
+          <nz-select style="width: 250px;" nzShowSearch nzAllowClear formControlName="seleEstados"
+            nzPlaceHolder="Estado" [(ngModel)]="estado_id">
+            <nz-option *ngFor="let estado of estados" [nzValue]="estado.codigo" [nzLabel]="estado.nome"></nz-option>
+          </nz-select>
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Informe seu nome">
+        <nz-input-group>
+          <nz-select style="width: 250px;" nzShowSearch nzAllowClear formControlName="seleCidades"
+            nzPlaceHolder="Cidade" [(ngModel)]="cidade_id">
+            <nz-option *ngFor="let cidade of cidades" [nzValue]="cidade.codigo" [nzLabel]="cidade.nome"></nz-option>
+          </nz-select>
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <div nz-row class="login-form-margin">
+    </div>
+    <button nz-button class="login-form-button login-form-margin" [disabled]="buttonDisabled"
+      nzType="primary">Cadastrar</button>

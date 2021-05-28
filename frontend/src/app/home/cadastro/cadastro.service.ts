@@ -1,19 +1,16 @@
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
+import { ConsumerService } from './../../shared/consumer/consumer.service';
 import { CadastroUsuario } from './cadastro-usuario';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CadastroService {
-  API = 'http://api.publicsoft.cvmakers.com.br:3333';
-
-  constructor(private httpClient: HttpClient) { }
+  constructor(private consumer: ConsumerService) { }
 
   cadastrar(createUsuario: CadastroUsuario): Observable<any> {
-    console.log(createUsuario);
-    return this.httpClient
-      .post(this.API + '/usuarios', createUsuario);
+    return this.consumer.post('/usuarios', createUsuario, false);
   };
 }

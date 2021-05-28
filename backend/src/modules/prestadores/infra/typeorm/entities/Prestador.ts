@@ -1,11 +1,7 @@
-import Cidade from "@modules/cidades/infra/typeorm/entities/Cidade";
-import Estado from "@modules/estados/infra/typeorm/entities/Estado";
 import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
-  ManyToOne,
-  JoinColumn,
   CreateDateColumn,
   UpdateDateColumn,
 } from "typeorm";
@@ -43,18 +39,10 @@ class Prestador {
   bairro: string;
 
   @Column()
-  cidade_id: string;
-
-  @ManyToOne(() => Cidade)
-  @JoinColumn({ name: "cidade_id" })
-  cidade: Cidade;
+  cidade: string;
 
   @Column()
-  estado_id: string;
-
-  @ManyToOne(() => Estado)
-  @JoinColumn({ name: "estado_id" })
-  estado: Estado;
+  estado: string;
 
   @Column()
   ativo: boolean;

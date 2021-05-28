@@ -4,7 +4,7 @@
   "port": 5432,
   "username": "4a4905cf1255c8bf2fca94a7835b95384Rw2y#1i7Z]S{MXk",
   "password": "59Q]O8KK/qErjBZ44a4905cf1255c8bf2fca94a7835b9538",
-  "database": "desafio_PublicSoft",
+  "database": "desafio_PublicSoft_db",
   "entities": [
     "./src/modules/**/infra/typeorm/entities/*.ts"
   ],

@@ -58,12 +58,12 @@ export class CreatePrestador1621885160280 implements MigrationInterface {
             type: "varchar",
           },
           {
-            name: "cidade_id",
-            type: "uuid",
+            name: "cidade",
+            type: "varchar",
           },
           {
-            name: "estado_id",
-            type: "uuid",
+            name: "estado",
+            type: "varchar",
           },
           {
             name: "ativo",
@@ -83,32 +83,9 @@ export class CreatePrestador1621885160280 implements MigrationInterface {
         ],
       })
     );
-
-    await queryRunner.createForeignKey(
-      "prestadores",
-      new TableForeignKey({
-        name: "PrestadorCidade",
-        columnNames: ["cidade_id"],
-        referencedColumnNames: ["id"],
-        referencedTableName: "cidades",
-      })
-    );
-
-    await queryRunner.createForeignKey(
-      "prestadores",
-      new TableForeignKey({
-        name: "PrestadorEstado",
-        columnNames: ["estado_id"],
-        referencedColumnNames: ["id"],
-        referencedTableName: "estados",
-      })
-    );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropForeignKey("prestadores", "PrestadorEstado");
-    await queryRunner.dropForeignKey("prestadores", "PrestadorCidade");
-
     await queryRunner.dropTable("prestadores");
   }
 }

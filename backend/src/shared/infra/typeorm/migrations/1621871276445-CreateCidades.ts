@@ -30,24 +30,16 @@ export class CreateCidades1621871276445 implements MigrationInterface {
             name: "nome",
             type: "varchar",
           },
+          {
+            name: "sigla_estado",
+            type: "varchar",
+          },
         ],
-      })
-    );
-
-    await queryRunner.createForeignKey(
-      "cidades",
-      new TableForeignKey({
-        name: "EstadoCidade",
-        columnNames: ["codigo_estado"],
-        referencedColumnNames: ["codigo"],
-        referencedTableName: "estados",
       })
     );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropForeignKey("cidades", "EstadoCidade");
-
     await queryRunner.dropTable("cidades");
   }
 }

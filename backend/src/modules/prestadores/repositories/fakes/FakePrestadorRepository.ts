@@ -16,8 +16,8 @@ class PrestadorRepository implements IPrestadorRepository {
     numero,
     complemento,
     bairro,
-    cidade_id,
-    estado_id,
+    cidade,
+    estado,
   }: ICreatePrestadorDTO): Promise<Prestador> {
     const prestador = new Prestador();
 
@@ -32,8 +32,8 @@ class PrestadorRepository implements IPrestadorRepository {
       numero,
       complemento,
       bairro,
-      cidade_id,
-      estado_id,
+      cidade,
+      estado,
     });
 
     this.prestadores.push(prestador);

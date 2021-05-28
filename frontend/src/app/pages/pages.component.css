@@ -78,3 +78,10 @@ nz-content {
   background: #fff;
   height: 100%;
 }
+
+.logout{
+  background-color: #a62c44;
+}
+.logout:hover{
+  background-color: #b1455b;
+}

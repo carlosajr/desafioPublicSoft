@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PagesService } from './pages.service';
 
 @Component({
   selector: 'app-pages',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PagesComponent implements OnInit {
   isCollapsed = false;
-  constructor() { }
+  constructor(private pagesService: PagesService) { }
 
   ngOnInit(): void {
+    // this.consumer.get('/cep/58064370')
+    //   .subscribe(response => {
+    //     console.log(response)
+    //   },
+    //     error => {
+    //       console.log(error);
+    //     }
+    //   );
+  }
+
+  logout(): void {
+    this.pagesService.logout();
   }
 
 }

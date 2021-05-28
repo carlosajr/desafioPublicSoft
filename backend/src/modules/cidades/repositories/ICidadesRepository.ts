@@ -6,4 +6,5 @@ export default interface ICidadeRepository {
   findAll(): Promise<Cidade[]>;
   findByCodigo(codigo: number): Promise<Cidade | undefined>;
   findByCodigoEstado(codigo_estado: number): Promise<Cidade[]>;
+  findBySiglaEstado(sigla_estado: string): Promise<Cidade[]>;
 }

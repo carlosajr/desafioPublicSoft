@@ -7,7 +7,7 @@ const prestadoresRoutes = Router();
 const prestadoresController = new PrestadoresController();
 
 prestadoresRoutes.use(ensureAuthenticated);
-// tipo_pessoa,cpf_cnpj,nome,email,cep,endereco,numero,complemento,bairro,cidade_id,estado_id,
+// tipo_pessoa,cpf_cnpj,nome,email,cep,endereco,numero,complemento,bairro,cidade,estado,
 prestadoresRoutes.post(
   "/",
   celebrate({
@@ -21,8 +21,8 @@ prestadoresRoutes.post(
       numero: Joi.number().required(),
       complemento: Joi.string().allow(null, ""),
       bairro: Joi.string().required(),
-      cidade_id: Joi.string().required(),
-      estado_id: Joi.string().required(),
+      cidade: Joi.string().required(),
+      estado: Joi.string().required(),
     },
   }),
   prestadoresController.create
@@ -42,8 +42,8 @@ prestadoresRoutes.put(
       numero: Joi.number().required(),
       complemento: Joi.string().allow(null, ""),
       bairro: Joi.string().required(),
-      cidade_id: Joi.string().required(),
-      estado_id: Joi.string().required(),
+      cidade: Joi.string().required(),
+      estado: Joi.string().required(),
     },
   }),
   prestadoresController.update

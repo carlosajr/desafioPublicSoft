@@ -21,8 +21,8 @@ describe("UpdatePrestador", () => {
       numero: 60,
       complemento: "Casa amarela",
       bairro: "Valentina 1",
-      cidade_id: "443878cc-4309-47c4-825e-496ed3816931",
-      estado_id: "448b3e42-d03f-42c2-9ec4-b68e7023a50b",
+      cidade: "443878cc-4309-47c4-825e-496ed3816931",
+      estado: "448b3e42-d03f-42c2-9ec4-b68e7023a50b",
     });
 
     const prestadorParaAtualziar = {
@@ -36,8 +36,8 @@ describe("UpdatePrestador", () => {
       numero: 60,
       complemento: "Casa amarela",
       bairro: "Valentina 1",
-      cidade_id: "443878cc-4309-47c4-825e-496ed3816931",
-      estado_id: "448b3e42-d03f-42c2-9ec4-b68e7023a50b",
+      cidade: "443878cc-4309-47c4-825e-496ed3816931",
+      estado: "448b3e42-d03f-42c2-9ec4-b68e7023a50b",
     };
 
     const prestadorAtualizado = await updatePrestador.execute(
@@ -63,8 +63,8 @@ describe("UpdatePrestador", () => {
       numero: 60,
       complemento: "Casa amarela",
       bairro: "Valentina 1",
-      cidade_id: "443878cc-4309-47c4-825e-496ed3816931",
-      estado_id: "448b3e42-d03f-42c2-9ec4-b68e7023a50b",
+      cidade: "443878cc-4309-47c4-825e-496ed3816931",
+      estado: "448b3e42-d03f-42c2-9ec4-b68e7023a50b",
     });
 
     const prestadorParaAtualziar = {
@@ -78,8 +78,8 @@ describe("UpdatePrestador", () => {
       numero: 60,
       complemento: "Casa amarela",
       bairro: "Valentina 1",
-      cidade_id: "443878cc-4309-47c4-825e-496ed3816931",
-      estado_id: "448b3e42-d03f-42c2-9ec4-b68e7023a50b",
+      cidade: "443878cc-4309-47c4-825e-496ed3816931",
+      estado: "448b3e42-d03f-42c2-9ec4-b68e7023a50b",
     };
 
     expect(
@@ -102,8 +102,8 @@ describe("UpdatePrestador", () => {
       numero: 60,
       complemento: "Casa amarela",
       bairro: "Valentina 1",
-      cidade_id: "443878cc-4309-47c4-825e-496ed3816931",
-      estado_id: "448b3e42-d03f-42c2-9ec4-b68e7023a50b",
+      cidade: "443878cc-4309-47c4-825e-496ed3816931",
+      estado: "448b3e42-d03f-42c2-9ec4-b68e7023a50b",
     });
 
     await createPrestador.execute({
@@ -116,8 +116,8 @@ describe("UpdatePrestador", () => {
       numero: 60,
       complemento: "Casa amarela",
       bairro: "Valentina 1",
-      cidade_id: "443878cc-4309-47c4-825e-496ed3816931",
-      estado_id: "448b3e42-d03f-42c2-9ec4-b68e7023a50b",
+      cidade: "443878cc-4309-47c4-825e-496ed3816931",
+      estado: "448b3e42-d03f-42c2-9ec4-b68e7023a50b",
     });
 
     const prestadorParaAtualziar = {
@@ -131,8 +131,8 @@ describe("UpdatePrestador", () => {
       numero: 60,
       complemento: "Casa amarela",
       bairro: "Valentina 1",
-      cidade_id: "443878cc-4309-47c4-825e-496ed3816931",
-      estado_id: "448b3e42-d03f-42c2-9ec4-b68e7023a50b",
+      cidade: "443878cc-4309-47c4-825e-496ed3816931",
+      estado: "448b3e42-d03f-42c2-9ec4-b68e7023a50b",
     };
 
     expect(

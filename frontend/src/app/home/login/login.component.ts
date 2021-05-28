@@ -37,8 +37,6 @@ export class LoginComponent implements OnInit {
     }
 
     if (this.validateForm.valid) {
-      console.log(this.email, this.senha);
-
       this.authService.autenticar(this.email, this.senha)
         .subscribe(response => {
           this.router.navigate(['pages'])

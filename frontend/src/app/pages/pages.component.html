@@ -6,17 +6,21 @@
       <h1>Desafio PublicSoft</h1>
     </div>
     <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
-      <li nz-menu-item>
+      <li [routerLink]="['']" nz-menu-item>
         <i nz-icon nzType="dashboard"></i>
         <span>Dashboard</span>
       </li>
-      <li routerLink="/welcome" nz-menu-item>
+      <li [routerLink]="['prestadores']" nz-menu-item>
         <i nz-icon nzType="user"></i>
         <span>Prestadores</span>
       </li>
-      <li nz-menu-item>
+      <li [routerLink]="['contratos']" nz-menu-item>
         <i nz-icon nzType="form"></i>
         <span>Contratos</span>
+      </li>
+      <li (click)="logout()" class="logout" nz-menu-item>
+        <i nz-icon nzType="logout"></i>
+        <span>Sair</span>
       </li>
     </ul>
   </nz-sider>
@@ -24,7 +28,7 @@
     <nz-header>
       <div class="app-header">
         <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
-          <i class="trigger" nz-icon nzType="isCollapsed ? 'menu-unfold' : 'menu-fold'"></i>
+          <i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></i>
         </span>
       </div>
     </nz-header>

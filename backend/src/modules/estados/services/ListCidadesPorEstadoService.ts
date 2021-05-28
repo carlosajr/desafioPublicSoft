@@ -5,7 +5,7 @@ import { inject, injectable } from "tsyringe";
 import AppError from "@shared/errors/AppErrors";
 
 interface IRequestDTO {
-  codigo_estado: number;
+  sigla_estado: string;
 }
 
 @injectable()
@@ -17,9 +17,9 @@ class ListCidadesPorEstadoService {
     //
   }
 
-  public async execute({ codigo_estado }: IRequestDTO): Promise<Cidade[]> {
-    const estados = await this.cidadesRepository.findByCodigoEstado(
-      codigo_estado
+  public async execute({ sigla_estado }: IRequestDTO): Promise<Cidade[]> {
+    const estados = await this.cidadesRepository.findBySiglaEstado(
+      sigla_estado
     );
     return estados;
   }

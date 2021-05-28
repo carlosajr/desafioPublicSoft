@@ -20,8 +20,8 @@ describe("DeletePrestador", () => {
       numero: 60,
       complemento: "Casa amarela",
       bairro: "Valentina 1",
-      cidade_id: "443878cc-4309-47c4-825e-496ed3816931",
-      estado_id: "448b3e42-d03f-42c2-9ec4-b68e7023a50b",
+      cidade: "443878cc-4309-47c4-825e-496ed3816931",
+      estado: "448b3e42-d03f-42c2-9ec4-b68e7023a50b",
     });
 
     const prestadorDeletado = await deletePrestador.execute(prestador.id);
@@ -44,8 +44,8 @@ describe("DeletePrestador", () => {
       numero: 60,
       complemento: "Casa amarela",
       bairro: "Valentina 1",
-      cidade_id: "443878cc-4309-47c4-825e-496ed3816931",
-      estado_id: "448b3e42-d03f-42c2-9ec4-b68e7023a50b",
+      cidade: "443878cc-4309-47c4-825e-496ed3816931",
+      estado: "448b3e42-d03f-42c2-9ec4-b68e7023a50b",
     });
 
     const idErrado = "448b3e42-d03f-42c2-9ec4-b68e7023a50E";
