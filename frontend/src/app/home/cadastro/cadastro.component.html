@@ -1,0 +1,47 @@
+<div class="content" nz-row nzJustify="center" nzAlign="top" nzSpan="24">
+  <div class="inner-content">
+    <img src="../../../assets/logo-complete.png" alt="">
+
+    <nz-card [nzBordered]="false" nzTitle="Cadastro">
+      <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+        <nz-form-item>
+          <nz-form-control nzErrorTip="Informe seu nome">
+            <nz-input-group nzPrefixIcon="user">
+              <input [(ngModel)]="nome" type="text" nz-input formControlName="userName" placeholder="Nome" />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control nzErrorTip="Informe um email valido">
+            <nz-input-group nzPrefixIcon="mail">
+              <input [(ngModel)]="email" type="text" ngModel email nz-input formControlName="userEmail"
+                placeholder="Email" />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control nzErrorTip="Informe sua senha">
+            <nz-input-group nzPrefixIcon="lock">
+              <input [(ngModel)]="senha" type="password" nz-input formControlName="password" placeholder="Senha" />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control nzErrorTip="Senhas Diferentes">
+            <nz-input-group nzPrefixIcon="lock">
+              <input [(ngModel)]="senhaConfirmacao" type="password" nz-input formControlName="passwordConf"
+                placeholder="Confirmação da Senha" />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <div nz-row class="login-form-margin">
+        </div>
+        <button nz-button class="login-form-button login-form-margin" [disabled]="buttonDisabled"
+          nzType="primary">Entrar</button>
+        <a [routerLink]="['']"> Faça login </a>
+      </form>
+
+    </nz-card>
+  </div>
+
+</div>

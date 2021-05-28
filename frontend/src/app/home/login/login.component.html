@@ -7,7 +7,7 @@
         <nz-form-item>
           <nz-form-control nzErrorTip="Informe um email valido">
             <nz-input-group nzPrefixIcon="user">
-              <input [(ngModel)]="usuario" type="text" ngModel email nz-input formControlName="userName"
+              <input [(ngModel)]="email" type="text" ngModel email nz-input formControlName="userName"
                 placeholder="Username" />
             </nz-input-group>
           </nz-form-control>
@@ -22,7 +22,7 @@
         <div nz-row class="login-form-margin">
         </div>
         <button nz-button class="login-form-button login-form-margin" nzType="primary">Entrar</button>
-        <a> Cadastre-se Agora </a>
+        <a [routerLink]="['cadastrar']"> Cadastre-se Agora </a>
       </form>
 
     </nz-card>

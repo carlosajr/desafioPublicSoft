@@ -1,4 +1,4 @@
-import { errors } from "celebrate";
+import { CelebrateError, errors } from "celebrate";
 import cors from "cors";
 import express, { Request, Response, NextFunction } from "express";
 import swaggerUi from "swagger-ui-express";
@@ -32,6 +32,13 @@ app.use(errors());
 
 app.use(
   (err: Error, request: Request, response: Response, next: NextFunction) => {
+    if (err instanceof CelebrateError) {
+      return response.status(400).json({
+        status: "error",
+        message: "Existe alguma informação invalida no Formulario",
+      });
+    }
+
     if (err instanceof AppError) {
       return response.status(err.statusCode).json({
         status: "error",

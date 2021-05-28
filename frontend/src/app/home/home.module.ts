@@ -7,13 +7,15 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzCardModule } from 'ng-zorro-antd/card';
+import { NzMessageModule } from 'ng-zorro-antd/message';
 
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { LoginComponent } from './login/login.component';
+import { CadastroComponent } from './cadastro/cadastro.component';
 
 @NgModule({
-  declarations: [HomeComponent, LoginComponent],
+  declarations: [HomeComponent, LoginComponent, CadastroComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,
@@ -23,7 +25,8 @@ import { LoginComponent } from './login/login.component';
     NzInputModule,
     FormsModule,
     ReactiveFormsModule,
-    NzCardModule
+    NzCardModule,
+    NzMessageModule
   ],
   exports: [HomeComponent]
 })
