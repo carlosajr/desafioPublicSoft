@@ -1,4 +1,5 @@
 import { errors } from "celebrate";
+import cors from "cors";
 import express, { Request, Response, NextFunction } from "express";
 import swaggerUi from "swagger-ui-express";
 
@@ -21,6 +22,7 @@ dataBase.conecta().then(() => console.log("DB Connected"));
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 
 app.use(routes);
 
