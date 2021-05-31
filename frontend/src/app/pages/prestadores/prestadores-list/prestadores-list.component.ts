@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NzTableFilterFn, NzTableFilterList, NzTableSortFn, NzTableSortOrder } from 'ng-zorro-antd/table';
-import { ConsumerService } from './../../../shared/consumer/consumer.service';
-import { NzButtonSize } from 'ng-zorro-antd/button';
-import { NzIconModule } from 'ng-zorro-antd/icon';
-
+import { PrestadoresService } from './../prestadores.service';
 
 interface Prestador {
   id: string;
@@ -91,12 +88,11 @@ export class PrestadoresListComponent implements OnInit {
   ];
 
   constructor(
-    private consumerService: ConsumerService,
-    private router: Router,
+    private prestadoresService: PrestadoresService
   ) { }
 
   ngOnInit(): void {
-    this.consumerService.get('/prestadores/')
+    this.prestadoresService.listar()
       .subscribe(response => {
         this.listOfData = response;
         console.log(this.listOfData)

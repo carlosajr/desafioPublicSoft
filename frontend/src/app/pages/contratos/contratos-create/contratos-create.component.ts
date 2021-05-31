@@ -1,4 +1,4 @@
-import { ConsumerService } from './../../../shared/consumer/consumer.service';
+import { ContratosService } from './../contratos.service';
 import { Component, OnChanges, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NzMessageService } from 'ng-zorro-antd/message';
@@ -24,7 +24,7 @@ export class ContratosCreateComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private consumerService: ConsumerService,
+    private contratosService: ContratosService,
     private alert: NzMessageService,
     private router: Router,
   ) { }
@@ -49,26 +49,23 @@ export class ContratosCreateComponent implements OnInit {
     if (this.validateForm.valid) {
       this.buttonDisabled = true;
 
-      this.consumerService.post('/contratos', {
-        prestador_id: this.prestador_id,
-        servico_prestado: this.servico_prestado,
-        data_inicio: this.data_inicio,
-        data_fim: this.data_fim
-      }).subscribe(response => {
+      this.contratosService.cadastrar(
+        this.prestador_id,
+        this.servico_prestado,
+        this.data_inicio,
+        this.data_fim
+      ).subscribe(response => {
         this.alert.success('Contrato cadastrado!', { nzDuration: 5000 });
         this.router.navigate(['/pages/contratos/'])
-      },
-        error => {
-          this.buttonDisabled = false;
-          this.alert.error(error.error.message);
-        }
-      );
-      ;
+      }, error => {
+        this.buttonDisabled = false;
+        this.alert.error(error.error.message);
+      });
     }
   }
 
   getPrestadores(): void {
-    this.consumerService.get('/prestadores')
+    this.contratosService.getPrestadores()
       .subscribe(response => {
         this.prestadores = response;
       })

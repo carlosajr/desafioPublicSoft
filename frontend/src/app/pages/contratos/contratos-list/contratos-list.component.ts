@@ -2,12 +2,7 @@ import { Contrato } from './../contrato';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NzTableFilterFn, NzTableFilterList, NzTableSortFn, NzTableSortOrder } from 'ng-zorro-antd/table';
-import { ConsumerService } from './../../../shared/consumer/consumer.service';
-import { NzButtonSize } from 'ng-zorro-antd/button';
-import { NzIconModule } from 'ng-zorro-antd/icon';
-import { registerLocaleData } from '@angular/common';
-import localeBr from '@angular/common/locales/pt';
-import { DatePipe } from '@angular/common';
+import { ContratosService } from './../contratos.service';
 import { NzModalService } from 'ng-zorro-antd/modal';
 
 interface ColumnItem {
@@ -80,15 +75,13 @@ export class ContratosListComponent implements OnInit {
   ];
 
   constructor(
-    private consumerService: ConsumerService,
-    private router: Router,
+    private contratosService: ContratosService,
     private modal: NzModalService
   ) { }
 
   onClick(event) {
-    const id = event.target.attributes.id.value;
-    this.consumerService
-      .get(`/contratos/${id}/prazo/restante/`)
+    const contrato_id = event.target.attributes.id.value;
+    this.contratosService.getDiasContrato(contrato_id)
       .subscribe(response => {
         const diasRestantes = response.dias_restantes == 0
           ? 'Hoje'
@@ -102,7 +95,7 @@ export class ContratosListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.consumerService.get('/contratos/')
+    this.contratosService.listar()
       .subscribe(response => {
         this.listOfData = response;
         console.log(this.listOfData)

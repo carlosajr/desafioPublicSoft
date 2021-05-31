@@ -1,4 +1,4 @@
-import { ConsumerService } from './../../../shared/consumer/consumer.service';
+import { ContratosService } from './../contratos.service';
 import { Component, OnChanges, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NzMessageService } from 'ng-zorro-antd/message';
@@ -27,7 +27,7 @@ export class ContratosUpdateComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private consumerService: ConsumerService,
+    private contratosService: ContratosService,
     private alert: NzMessageService,
     private router: Router,
     private route: ActivatedRoute,
@@ -45,17 +45,15 @@ export class ContratosUpdateComponent implements OnInit {
       dataFim: [null, [Validators.required]],
     });
 
-    this.consumerService.get('/contratos/' + this.contrato_id)
+    this.contratosService.getContrato(this.contrato_id)
       .subscribe(response => {
         this.prestador_id = response.prestador_id,
           this.servico_prestado = response.servico_prestado,
           this.data_inicio = response.data_inicio,
           this.data_fim = response.data_fim
-      },
-        error => {
-          this.alert.error(error.error.message);
-        }
-      );
+      }, error => {
+        this.alert.error(error.error.message);
+      });
   }
 
   submitForm(): void {
@@ -67,26 +65,24 @@ export class ContratosUpdateComponent implements OnInit {
     if (this.validateForm.valid) {
       this.buttonDisabled = true;
 
-      this.consumerService.put('/contratos/' + this.contrato_id, {
-        prestador_id: this.prestador_id,
-        servico_prestado: this.servico_prestado,
-        data_inicio: this.data_inicio,
-        data_fim: this.data_fim
-      }).subscribe(response => {
+      this.contratosService.atualizar(
+        this.contrato_id,
+        this.prestador_id,
+        this.servico_prestado,
+        this.data_inicio,
+        this.data_fim
+      ).subscribe(response => {
         this.alert.success('Contrato cadastrado!', { nzDuration: 5000 });
         this.router.navigate(['/pages/contratos/'])
-      },
-        error => {
-          this.buttonDisabled = false;
-          this.alert.error(error.error.message);
-        }
-      );
-      ;
+      }, error => {
+        this.buttonDisabled = false;
+        this.alert.error(error.error.message);
+      });
     }
   }
 
   getPrestadores(): void {
-    this.consumerService.get('/prestadores')
+    this.contratosService.getPrestadores()
       .subscribe(response => {
         this.prestadores = response;
       })

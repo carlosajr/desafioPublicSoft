@@ -1,9 +1,11 @@
-import { ConsumerService } from './../../../shared/consumer/consumer.service';
 import { Component, OnChanges, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { NzMessageService } from 'ng-zorro-antd/message';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+
+import { NzMessageService } from 'ng-zorro-antd/message';
+
+import { PrestadoresService } from './../prestadores.service';
 
 @Component({
   selector: 'app-prestadores-update',
@@ -31,7 +33,7 @@ export class PrestadoresUpdateComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private consumerService: ConsumerService,
+    private prestadoresService: PrestadoresService,
     private alert: NzMessageService,
     private router: Router,
     private route: ActivatedRoute
@@ -54,9 +56,10 @@ export class PrestadoresUpdateComponent implements OnInit {
 
     this.getEstados();
 
-    this.consumerService.get('/prestadores/' + this.prestador_id)
+    this.prestadoresService.getPrestador(this.prestador_id)
       .subscribe(response => {
-        this.consumerService.get('/estados/' + response.estado + '/cidades')
+        this.estado = response.estado
+        this.prestadoresService.getCidades(response.estado)
           .subscribe(responseCidades => {
             this.cidades = responseCidades
             this.nome = response.nome,
@@ -66,8 +69,7 @@ export class PrestadoresUpdateComponent implements OnInit {
               this.numero = response.numero,
               this.complemento = response.complemento,
               this.bairro = response.bairro,
-              this.cidade = response.cidade,
-              this.estado = response.estado
+              this.cidade = response.cidade
           })
       },
         error => {
@@ -75,8 +77,6 @@ export class PrestadoresUpdateComponent implements OnInit {
           this.alert.error(error.error.message);
         }
       );
-
-
   }
 
   submitForm(): void {
@@ -88,54 +88,51 @@ export class PrestadoresUpdateComponent implements OnInit {
     if (this.validateForm.valid) {
       this.buttonDisabled = true;
 
-      this.consumerService.put('/prestadores/' + this.prestador_id, {
-        nome: this.nome,
-        email: this.email,
-        cep: this.cep,
-        endereco: this.endereco,
-        numero: this.numero,
-        complemento: this.complemento,
-        bairro: this.bairro,
-        cidade: this.cidade,
-        estado: this.estado
-      }).subscribe(response => {
+      this.prestadoresService.atualizar(
+        this.prestador_id,
+        this.nome,
+        this.email,
+        this.cep,
+        this.endereco,
+        this.numero,
+        this.complemento,
+        this.bairro,
+        this.cidade,
+        this.estado
+      ).subscribe(response => {
         this.alert.success('Prestador Atualizado!', { nzDuration: 5000 });
         this.router.navigate(['/pages/prestadores/'])
-      },
-        error => {
-          this.buttonDisabled = false;
-          this.alert.error(error.error.message);
-        }
-      );
-      ;
+      }, error => {
+        this.buttonDisabled = false;
+        this.alert.error(error.error.message);
+      });
     }
   }
 
   onBlurCep(event: any) {
     const cep = event.target.value;
-    this.consumerService.get('/cep/' + cep)
+    this.prestadoresService.getCep(cep)
       .subscribe(response => {
-        this.consumerService.get('/estados/' + response.uf + '/cidades')
+        this.estado = response.uf;
+        this.prestadoresService.getCidades(this.estado)
           .subscribe(responseCidades => {
             this.cidades = responseCidades;
             this.endereco = response.logradouro;
             this.bairro = response.bairro;
             this.cidade = response.localidade;
-            this.estado = response.uf;
           })
       })
   }
 
   getCidades() {
-    this.cidade = '';
-    this.consumerService.get('/estados/' + this.estado + '/cidades')
+    this.prestadoresService.getCidades(this.estado)
       .subscribe(responseCidades => {
         this.cidades = responseCidades;
       })
   }
 
   getEstados(): void {
-    this.consumerService.get('/estados')
+    this.prestadoresService.getEstados()
       .subscribe(response => {
         this.estados = response;
       })

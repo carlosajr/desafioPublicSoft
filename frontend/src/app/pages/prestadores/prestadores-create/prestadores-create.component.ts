@@ -1,3 +1,4 @@
+import { PrestadoresService } from './../prestadores.service';
 import { ConsumerService } from './../../../shared/consumer/consumer.service';
 import { Component, OnChanges, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -11,7 +12,6 @@ import { Router } from '@angular/router';
 })
 export class PrestadoresCreateComponent implements OnInit {
   validateForm!: FormGroup;
-
 
   tipo_pessoa = 'PF';
   cpf_cnpj = '';
@@ -32,7 +32,7 @@ export class PrestadoresCreateComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private consumerService: ConsumerService,
+    private prestadoresService: PrestadoresService,
     private alert: NzMessageService,
     private router: Router,
   ) { }
@@ -65,19 +65,19 @@ export class PrestadoresCreateComponent implements OnInit {
     if (this.validateForm.valid) {
       this.buttonDisabled = true;
 
-      this.consumerService.post('/prestadores', {
-        tipo_pessoa: this.tipo_pessoa,
-        cpf_cnpj: this.cpf_cnpj,
-        nome: this.nome,
-        email: this.email,
-        cep: this.cep,
-        endereco: this.endereco,
-        numero: this.numero,
-        complemento: this.complemento,
-        bairro: this.bairro,
-        cidade: this.cidade,
-        estado: this.estado
-      }).subscribe(response => {
+      this.prestadoresService.cadastrar(
+        this.tipo_pessoa,
+        this.cpf_cnpj,
+        this.nome,
+        this.email,
+        this.cep,
+        this.endereco,
+        this.numero,
+        this.complemento,
+        this.bairro,
+        this.cidade,
+        this.estado
+      ).subscribe(response => {
         this.alert.success('Prestador cadastrado!', { nzDuration: 5000 });
         this.router.navigate(['/pages/prestadores/'])
       },
@@ -92,19 +92,21 @@ export class PrestadoresCreateComponent implements OnInit {
 
   onBlurCep(event: any) {
     const cep = event.target.value;
-    this.consumerService.get('/cep/' + cep)
+    this.prestadoresService.getCep(cep)
       .subscribe(response => {
         this.estado = response.uf;
-        this.getCidades()
-        this.endereco = response.logradouro;
-        this.bairro = response.bairro;
-        this.cidade = response.localidade;
-
+        this.prestadoresService.getCidades(this.estado)
+          .subscribe(responseCidades => {
+            this.cidades = responseCidades;
+            this.endereco = response.logradouro;
+            this.bairro = response.bairro;
+            this.cidade = response.localidade;
+          })
       })
   }
 
   getEstados(): void {
-    this.consumerService.get('/estados')
+    this.prestadoresService.getEstados()
       .subscribe(response => {
         this.estados = response;
       })
@@ -116,8 +118,7 @@ export class PrestadoresCreateComponent implements OnInit {
   }
 
   getCidades() {
-    this.cidade = '';
-    this.consumerService.get('/estados/' + this.estado + '/cidades')
+    this.prestadoresService.getCidades(this.estado)
       .subscribe(responseCidades => {
         this.cidades = responseCidades;
       })

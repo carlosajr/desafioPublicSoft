@@ -1,4 +1,4 @@
-import { ConsumerService } from './../../../shared/consumer/consumer.service';
+import { PrestadoresService } from './../prestadores.service';
 import { Component, OnChanges, OnInit } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { Router } from '@angular/router';
@@ -21,7 +21,7 @@ export class PrestadoresDeleteComponent implements OnInit {
   buttonDisabled = false;
 
   constructor(
-    private consumerService: ConsumerService,
+    private prestadoresService: PrestadoresService,
     private alert: NzMessageService,
     private router: Router,
     private route: ActivatedRoute,
@@ -31,18 +31,16 @@ export class PrestadoresDeleteComponent implements OnInit {
   ngOnInit(): void {
     this.prestador_id = this.route.snapshot.params.prestador_id
 
-    this.consumerService.get('/prestadores/' + this.prestador_id)
+    this.prestadoresService.getPrestador('/prestadores/' + this.prestador_id)
       .subscribe(response => {
         this.tipo_pessoa = response.tipo_pessoa,
           this.cpf_cnpj = response.cpf_cnpj,
           this.nome = response.nome,
           this.email = response.email
-      },
-        error => {
-          this.buttonDisabled = false;
-          this.alert.error(error.error.message);
-        }
-      );
+      }, error => {
+        this.buttonDisabled = false;
+        this.alert.error(error.error.message);
+      });
   }
 
   submitForm(): void {
@@ -52,16 +50,14 @@ export class PrestadoresDeleteComponent implements OnInit {
       nzOkText: 'Sim',
       nzOkType: 'primary',
       nzOnOk: () => {
-        this.consumerService.delete('/prestadores/' + this.prestador_id)
+        this.prestadoresService.deletar(this.prestador_id)
           .subscribe(response => {
             this.alert.success('Prestador Removido!', { nzDuration: 5000 });
             this.router.navigate(['/pages/prestadores/'])
-          },
-            error => {
-              this.buttonDisabled = false;
-              this.alert.error(error.error.message);
-            }
-          );
+          }, error => {
+            this.buttonDisabled = false;
+            this.alert.error(error.error.message);
+          });
       },
       nzCancelText: 'Não',
       nzOnCancel: () => { }
