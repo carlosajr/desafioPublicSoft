@@ -1,6 +1,4 @@
-
-<h1 align="center">Desafio PublicSoft</h1>
-<h3 align="center">Sistema de gestão de contratos</h3>
+<h1 align="center">Sistema de gestão de contratos</h1>
 
 ### Features
 - [x] Autenticação JWT
