@@ -4,7 +4,7 @@
 - [x] Autenticação JWT
 - [x] Cadastro de Prestadores de Serviço
 - [x] Cadastro de Contratos
-- [ ] Dashboard (Em desenvolvimento)
+- [x] Dashboard
 
 ### 🛠 Documentação 
 
@@ -32,10 +32,10 @@ Antes de começar, você vai precisar ter instalado em sua máquina as seguintes
 
 ```bash
 # Clone este repositório
-$ git clone <https://github.com/carlosajr/desafioPublicSoft.git>
+$ git clone <https://github.com/carlosajr/gestao-contratos-full.git>
 
 # Acesse a pasta do projeto no terminal/cmd
-$ cd desafioPublicSoft
+$ cd gestao-contratos-full
 
 # Vá para a pasta server
 $ cd backend
@@ -59,10 +59,10 @@ $ sudo docker-compose up --build -d
 ```
 
 # Clone este repositório
-$ git clone <https://github.com/carlosajr/desafioPublicSoft.git>
+$ git clone <https://github.com/carlosajr/gestao-contratos-full.git>
 
 # Acesse a pasta do projeto no terminal/cmd
-$ cd desafioPublicSoft
+$ cd gestao-contratos-full
 
 # Vá para a pasta server
 $ cd frontend
@@ -76,7 +76,3 @@ $ ng serve
 # O servidor inciará na porta:3333 - acesse <http://localhost:4200>
 
 ```
-
-<h3 align="center">Agradeço a oportunidade de participar deste desafio 😉 </h3>
-
-
