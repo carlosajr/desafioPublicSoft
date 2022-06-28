@@ -8,7 +8,7 @@
 
 ### 🛠 Documentação 
 
-Swagger - [Documentação da API](http://api.desafiopublicsoft.cvmakers.com.br/)
+Swagger
 
 ### 🛠 Tecnologias
 
